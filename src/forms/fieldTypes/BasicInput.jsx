@@ -1,8 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import decorate from "lib/utils/decorate"
 
-export class BasicInput extends React.Component {
+export default class BasicInput extends React.Component {
   static propTypes = {
     initialValue: PropTypes.string,
     name: PropTypes.string,
@@ -35,6 +34,3 @@ export class BasicInput extends React.Component {
     )
   }
 }
-export default decorate(
-  BasicInput,
-)
