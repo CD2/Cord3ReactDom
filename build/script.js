@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
-=======
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -13,7 +9,6 @@ module.exports =
 		root["@cd2/cord-react-dom"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
->>>>>>> 29693796b1872a1d81245a0ef78953550cf67702
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
