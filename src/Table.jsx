@@ -32,7 +32,7 @@ export default class CordTable extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if (this.props.collection !== props.collection) this.recordsPromise = collection.toArray()
+    if (this.props.collection !== props.collection) this.recordsPromise = props.collection.toArray()
   }
 
   handleCollectionChange = () => {
@@ -45,7 +45,8 @@ export default class CordTable extends React.Component {
 
   render() {
     const { renderRow, renderHead, collection } = this.props
-    if(this.records.length === 0) return <div className={`${this.props.className} no-results`}>No entries</div>
+    if (this.records.length === 0)
+      return <div className={`${this.props.className} no-results`}>No entries</div>
     return (
       <table className={this.props.className}>
         <thead>{renderHead()}</thead>
