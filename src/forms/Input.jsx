@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import { observer, inject } from "mobx-react"
 import { titleize } from "help-my-strings"
 import BasicInput from "./fieldTypes/BasicInput"
-import RichText from "./fieldTypes/richText"
 import Textarea from "./fieldTypes/textarea"
 import ImageField from "./fieldTypes/image"
 import FileField from "./fieldTypes/file"
@@ -51,15 +50,6 @@ export default class Input extends React.Component {
   renderInput(type, value, handleChange, fieldTitle) {
     const { fullEditor, characterCount, placeholder, disabled } = this.props
     switch (type) {
-      case `rich-text`:
-        return (
-          <RichText
-            value={value}
-            fullEditor={fullEditor}
-            characterCount={characterCount}
-            onChange={handleChange}
-          />
-        )
       case `text-area`:
         return <Textarea value={value} onChange={handleChange} />
       case `image`:
