@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import Select from './Select'
-import decorate from "lib/utils/decorate"
 
-export class CollectionSelectField extends React.Component {
+@observer
+export default class CollectionSelectField extends React.Component {
 
   static propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -47,5 +47,3 @@ export class CollectionSelectField extends React.Component {
   }
 
 }
-
-export default decorate (observer, CollectionSelectField)

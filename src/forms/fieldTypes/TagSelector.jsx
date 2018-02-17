@@ -2,37 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { observer } from "mobx-react"
 import { observable, computed, toJS, reaction, action } from "mobx"
-import Grid from "lib/components/grid"
-import { styled, t } from "lib/utils/theme"
-import FaIcon from "lib/components/fa_icon"
 import BasicInput from "./BasicInput"
 
-@styled`
-  .suggestions {
-    background-color: white;
-    border-radius: ${t(`borderRadii.panel`)};
-    border: 1px solid ${t(`border`)};
-    &__item {
-      display: block;
-      padding: 8px;
-      &:hover {
-        background: ${t(`background`)}
-      }
-    }
-  }
-  .selected-item {
-    background: ${t(`background`)};
-    font-size: 0.9em;
-    padding: 4px 8px;
-    font-weight: 600;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    margin: 0 5px 5px 0;
-    i {
-      margin-left: 6px;
-    }
-  }
-`
 @observer
 export default class TagSelector extends React.Component {
   static propTypes = {
@@ -104,17 +75,17 @@ export default class TagSelector extends React.Component {
   renderSelected() {
     if (this.selected.length === 0) return null
     return (
-      <Grid noGutters>
+      <div>
         {this.selected.map(sel => (
           <span
             key={sel}
             className="selected-item"
             onClick={this.handleRemoveSuggestion.bind(this, sel[0])}
           >
-            {sel[1]} <FaIcon icon="x" />
+            {sel[1]} XXX
           </span>
         ))}
-      </Grid>
+      </div>
     )
   }
 

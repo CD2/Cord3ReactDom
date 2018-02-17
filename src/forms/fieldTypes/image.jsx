@@ -1,9 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { observable, action } from "mobx"
 import { observer } from "mobx-react"
-import Image from "lib/components/image"
-import image_add from "lib/images/image-add-button.svg"
 
 @observer
 export default class ImageField extends React.Component {
@@ -34,7 +31,7 @@ export default class ImageField extends React.Component {
   renderPreview() {
     const { value, model } = this.props
     if (!value) return null
-    if (!value.url) return <Image defaultSrc={image_add} />
+    if (!value.url) return 'ADD!'
     return <img src={value.url} />
   }
 

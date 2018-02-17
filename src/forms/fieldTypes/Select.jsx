@@ -1,9 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import FaIcon from "lib/components/fa_icon"
-import decorate from "lib/utils/decorate"
 
-export class SelectField extends React.Component {
+export default class SelectField extends React.Component {
   static propTypes = {
     choices: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.array])),
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -92,11 +90,8 @@ export class SelectField extends React.Component {
         >
           {this.renderChoices()}
         </select>
-        <FaIcon icon="select-arrows" className="icon" />
+        ^>
       </div>
     )
   }
 }
-export default decorate(
-  SelectField
-)

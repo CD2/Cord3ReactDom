@@ -1,18 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
-import Image from "lib/components/image"
-import image_add from "lib/images/image-add-button.svg"
-import FaIcon from "../../../lib/components/fa_icon"
-import Button from "../../../lib/components/button"
-import { styled } from "../../../lib/utils/theme"
 
-@styled`
-  .preview {
-    margin-bottom: 10px;
-  }
-`
 @observer
 export default class FileField extends React.Component {
 
@@ -41,7 +30,7 @@ export default class FileField extends React.Component {
   renderPreview() {
     const { value, model } = this.props
     if(!value || !value.url) return null
-    return <Button buttonStyle="minor"><FaIcon icon={value.extension} /> { value.basename }</Button>
+    return <b>{ value.basename }</b>
   }
 
   render() {

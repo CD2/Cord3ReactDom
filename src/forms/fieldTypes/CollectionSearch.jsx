@@ -1,18 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { observable } from "mobx"
-import { observer } from "mobx-react"
-import store from "utils/store"
 import BasicInput from "./BasicInput"
-import { Async } from "../../"
-import Select from "./Select"
 
-import Collection from "cord/model/Collection"
-import decorate from "../../../lib/utils/decorate"
-import { styled, t } from "lib/utils/theme"
-import FaIcon from "../../../lib/components/fa_icon"
-
-export class CollectionSelectField extends React.Component {
+@observer
+export default class CollectionSelectField extends React.Component {
   static propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     collection: PropTypes.object,
@@ -80,7 +72,7 @@ export class CollectionSelectField extends React.Component {
     if (!this.loaded) return "LOADING!"
     return (
       <div className={className}>
-        <FaIcon icon="search"/>
+        XXX
         <BasicInput
           placeholder={this.props.placeholder || `Type for suggestions...`}
           value={this.inputValue || ''}
@@ -93,53 +85,3 @@ export class CollectionSelectField extends React.Component {
     )
   }
 }
-
-export default decorate(
-  styled`
-  position: relative;
-  i {
-    position: absolute;
-    top: 9px;
-    left: 9px;
-    opacity: 0.4;
-  }
-  input {
-    padding-left: 32px;
-  }
-  position: relative;
-  .suggestions {
-    background-color: white;
-    border-radius: ${t(`borderRadii.panel`)};
-    border: 1px solid ${t(`border`)};
-    width: 100%;
-    position: absolute;
-    height: 200px;
-    overflow: auto;
-    z-index: 100;
-    &__item {
-      display: block;
-      padding: 8px;
-      cursor: pointer;
-      font-size: 0.9em;
-      font-weight: 600;
-      &:hover {
-        background: ${t(`background`)}
-      }
-    }
-  }
-  .selected-item {
-    background: ${t(`background`)};
-    font-size: 0.9em;
-    padding: 4px 8px;
-    font-weight: 600;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    margin: 0 5px 5px 0;
-    i {
-      margin-left: 6px;
-    }
-  }
-`,
-  observer,
-  CollectionSelectField,
-)

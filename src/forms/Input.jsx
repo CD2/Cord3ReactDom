@@ -10,7 +10,6 @@ import Checkbox from "./fieldTypes/checkbox"
 import Select from "./fieldTypes/Select"
 import CollectionSelect from "./fieldTypes/CollectionSelect"
 import CollectionTagSelector from "./fieldTypes/CollectionTagSelector"
-import Grid from "lib/components/grid"
 
 @inject(`form`)
 @observer
@@ -142,19 +141,13 @@ export default class Input extends React.Component {
     }
     return (
       <div className={`cord-field ${this.props.className}${errors.length > 0 ? ` errors` : ``}`}>
-        <Grid columns={3}>
-          <Grid.Item colSpan={description ? 2 : 3}>
             <label className="cord-label">
               {type !== `checkbox` && !noLabel && fieldTitle}
               {this.renderInput(type, value, onChange, fieldTitle)}
             </label>
-          </Grid.Item>
           {description && (
-            <Grid.Item>
               <span className="description">{description}</span>
-            </Grid.Item>
           )}
-        </Grid>
         {renderedErrors}
       </div>
     )

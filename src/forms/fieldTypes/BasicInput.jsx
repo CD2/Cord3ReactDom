@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { styled, t } from "lib/utils/theme"
 import decorate from "lib/utils/decorate"
 
 export class BasicInput extends React.Component {
