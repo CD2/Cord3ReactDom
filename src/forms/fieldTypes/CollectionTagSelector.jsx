@@ -15,6 +15,10 @@ export default class CollectionTagSelector extends React.Component {
     value_attribute: PropTypes.string.isRequired,
   }
 
+  static defaultProps = {
+    value: [],
+  }
+
   constructor(props) {
     super(props)
     this.collection = props.collection
