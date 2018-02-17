@@ -1,6 +1,6 @@
 {
   "name": "@cd2/cord-react-dom",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "react components for web using cord",
   "module": "src/index.js",
   "scripts": {
