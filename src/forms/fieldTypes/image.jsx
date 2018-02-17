@@ -21,6 +21,7 @@ export default class ImageField extends React.Component {
     accepts: [],
     onlyImages: false,
     onlySpreadsheets: false,
+    value: {},
   }
 
   handleChange = e => {
@@ -45,7 +46,7 @@ export default class ImageField extends React.Component {
       onlySpreadsheets,
     } = this.props
     let acceptedTypes = null
-
+    if(!value.allowedTypes) throw new Error('YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!')
     return (
       <div className="image-field">
         <div>{this.renderPreview()}</div>

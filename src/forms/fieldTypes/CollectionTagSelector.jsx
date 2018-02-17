@@ -77,14 +77,16 @@ export default class CollectionTagSelector extends React.Component {
   }
 
   handleCreate = () => {
-    return (
-      <span
-        className="suggestions__item"
-        onClick={() => this.props.createFunction(this.inputValue)}
-      >
+    if(this.props.createFunction){
+      return (
+        <span
+          className="suggestions__item"
+          onClick={() => this.props.createFunction(this.inputValue)}
+        >
         Create: {this.inputValue}
       </span>
-    )
+      )
+    }
   }
 
   render() {

@@ -19,8 +19,13 @@ export default class SelectField extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.includeBlank && !this.props.value && this.props.choices && this.props.onChange) {
-      window.cboices = this.props.choices
+    if (
+      !this.props.includeBlank &&
+      !this.props.value &&
+      this.props.choices &&
+      this.props.onChange &&
+      this.choices.length > 0
+    ) {
       this.props.onChange(this.choices[0][0])
     }
   }
