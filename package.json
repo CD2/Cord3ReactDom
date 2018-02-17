@@ -1,8 +1,8 @@
 {
   "name": "@cd2/cord-react-dom",
-  "version": "3.0.1",
+  "version": "3.0.3",
   "description": "react components for web using cord",
-  "main": "build/script.js",
+  "module": "src/index.js",
   "scripts": {
     "build": "webpack",
     "prepare": "npm run build"
