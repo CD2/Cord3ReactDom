@@ -19,10 +19,12 @@ export default class CollectionTagSelector extends React.Component {
     super(props)
     this.collection = props.collection
     this.suggestionPromise = this.pluckCollection()
-    this.suggestionPromise.then(response => {
-      this.initialValues = response.filter(val => props.value.includes(val[0]))
-      this.loaded = true
-    })
+    if (props.value) {
+      this.suggestionPromise.then(response => {
+        this.initialValues = response.filter(val => props.value.includes(val[0]))
+        this.loaded = true
+      })
+    }
   }
 
   componentWillMount() {
