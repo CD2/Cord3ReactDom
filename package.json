@@ -1,11 +1,12 @@
 {
   "name": "@cd2/cord-react-dom",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "react components for web using cord",
   "main": "build/script.js",
   "scripts": {
     "build": "webpack",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "release": "git commit -am 'new release' && npm publish"
   },
   "author": "Henry Morgan",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "mobx-react": "^4.4.2",
     "object-to-formdata": "^1.2.2",
     "pluralize": "^7.0.0",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "webpack": "^3.11.0"
   },
