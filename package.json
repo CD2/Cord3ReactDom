@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "prepare": "npm run build",
-    "update-version": "yarn version && 3.0.5"
+    "release": "git commit -am 'new release' && npm publish"
   },
   "author": "Henry Morgan",
   "license": "ISC",
