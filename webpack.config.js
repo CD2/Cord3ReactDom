@@ -8,7 +8,8 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
     filename: "script.js",
     publicPath: "/",
-    libraryTarget: 'commonjs2'
+    library: '@cd2/cord-react-dom',
+    libraryTarget: 'umd',
   },
   devServer: {
     contentBase: "./build",
@@ -33,9 +34,13 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: [path.resolve(__dirname, "src"), "node_modules"],
     extensions: [".js", ".jsx"],
   },
   stats: {
     colors: true
-  }
+  },
+  externals: {
+    'react': 'commonjs react'
+  },
 };
