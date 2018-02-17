@@ -79,7 +79,7 @@ export default class Input extends React.Component {
           <CollectionSelect
             value={value}
             onChange={handleChange}
-            model={this.props.model}
+            collection={this.props.collection}
             name_attribute={this.props.name_attribute}
             value_attribute={this.props.value_attribute}
             choices={this.props.choices}
