@@ -19,6 +19,7 @@
         "json": "always"
       }
     ],
+    "no-debugger": 1,
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": 0,
     "indent": [1, 2],

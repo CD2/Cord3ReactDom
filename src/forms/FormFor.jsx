@@ -69,10 +69,12 @@ export default class FormFor extends React.Component {
   async save() {
     if (this.submitting) return
     this.submitting = true
+    this.formObj.submitting = true
     console.log("SAVING")
     const saved = await this.props.record.save()
     console.log("SAVIED", saved)
     this.submitting = false
+    this.formObj.submitting = false
     return saved
   }
 
