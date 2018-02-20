@@ -22,9 +22,7 @@ export default class CordTable extends React.Component {
     reaction(
       () => this.recordsPromise,
       async prom => {
-        console.log(this.props.collection._sort, "balahsf")
         this.records = await prom
-        console.log(this.records.map(r => r.id))
         this.loaded = true
       },
       true,

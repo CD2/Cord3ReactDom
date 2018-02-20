@@ -70,9 +70,7 @@ export default class FormFor extends React.Component {
     if (this.submitting) return
     this.submitting = true
     this.formObj.submitting = true
-    console.log("SAVING")
     const saved = await this.props.record.save()
-    console.log("SAVIED", saved)
     this.submitting = false
     this.formObj.submitting = false
     return saved
@@ -90,7 +88,6 @@ export default class FormFor extends React.Component {
 
   render() {
     const { children } = this.props
-    console.log(this.formObj)
     return (
       <Provider form={this.formObj}>
         <form onSubmit={this.handleSubmit}>
