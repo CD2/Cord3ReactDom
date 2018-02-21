@@ -30,18 +30,15 @@ export class Checkbox extends React.Component {
   render() {
     const { className, fieldTitle } = this.props
     return (
-      <div className={className}>
-        <label className='label'>
-          <input
-            className="input"
-            checked={this.checked || this.props.defaultValue}
-            onChange={this.handleChange}
-            type="checkbox"
-          />
-          <span className="check-box" />
-          <span>{fieldTitle}</span>
-        </label>
-      </div>
+      <React.Fragment>
+        <input
+          className="checkbox"
+          checked={this.checked || this.props.defaultValue}
+          onChange={this.handleChange}
+          type="checkbox"
+        />
+        <span>{fieldTitle}</span>
+      </React.Fragment>
     )
   }
 

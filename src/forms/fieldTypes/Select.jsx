@@ -95,7 +95,6 @@ export default class SelectField extends React.Component {
         >
           {this.renderChoices()}
         </select>
-        ^>
       </div>
     )
   }

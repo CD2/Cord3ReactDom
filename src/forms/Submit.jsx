@@ -39,7 +39,7 @@ export default class Submit extends React.Component {
     if (submitting || this.submittingTimeout) return `submitting`
     console.log('asd')
     return (
-      <input className='cord-submit' type="submit" value={text || defaultText} />
+      <input className='submit' type="submit" value={text || defaultText} />
     )
   }
 

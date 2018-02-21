@@ -117,27 +117,34 @@ export default class PaginationControls extends React.Component {
     if (!this.totalRecords) return null
 
     const prevButton = this.firstPage ? (
-      <a className="disabled">Previous</a>
+      <a className="disabled pagination__previous">Previous</a>
     ) : (
-      <a onClick={this.handlePrevious}>Previous</a>
+      <a className="pagination__previous" onClick={this.handlePrevious}>Previous</a>
     )
 
     const nextButton = this.firstPage ? (
-      <a className="disabled">Next</a>
+      <a className="disabled pagination__next">Next</a>
     ) : (
-      <a onClick={this.handleNext}>Next</a>
+      <a className="pagination__next"  onClick={this.handleNext}>Next</a>
     )
 
     return (
-      <div>
-        {prevButton}
-        {Array(this.pageCount)
-          .fill(0)
-          .map((_, p) => <a onClick={() => this.gotoPage(p + 1)}>{p + 1}</a>)}
-        {nextButton}
-        {this.offset + 1}-{Math.min(this.offset + this.props.perPage, this.totalRecords)}
-        {` of `}
-        {this.totalRecords}
+      <div className='pagination__wrapper'>
+        {
+          this.pageCount > 1 &&
+          <div className="pagination">
+            {prevButton}
+            {Array(this.pageCount)
+            .fill(0)
+            .map((_, p) => <a className="pagination__number" onClick={() => this.gotoPage(p + 1)}>{p + 1}</a>)}
+            {nextButton}
+          </div>
+        }
+        <div className="pagination__summary">
+          {this.offset + 1}-{Math.min(this.offset + this.props.perPage, this.totalRecords)}
+          {` of `}
+          {this.totalRecords}
+        </div>
       </div>
     )
   }
