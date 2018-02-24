@@ -12,6 +12,7 @@ export default class CordTable extends React.Component {
 
   @observable recordsPromise
   @observable records = []
+  @observable loading = false
   @observable loaded = false
 
   componentWillMount() {
@@ -33,8 +34,10 @@ export default class CordTable extends React.Component {
     if (this.props.collection !== props.collection) this.recordsPromise = props.collection.toArray()
   }
 
-  handleCollectionChange = () => {
-    this.recordsPromise = this.props.collection.toArray()
+  handleCollectionChange = async () => {
+    this.loading = true
+    this.records = await this.props.collection.toArray()
+    this.loading = false
   }
 
   componentWillUnmount() {
@@ -46,10 +49,13 @@ export default class CordTable extends React.Component {
     if (this.records.length === 0)
       return <div className={`${this.props.className} no-results`}>No entries</div>
     return (
-      <table className={this.props.className}>
-        <thead>{renderHead()}</thead>
-        <tbody>{this.records.map(renderRow)}</tbody>
-      </table>
+      <React.Fragment>
+        {this.loading + ""}
+        <table className={this.props.className}>
+          <thead>{renderHead()}</thead>
+          <tbody>{this.records.map(renderRow)}</tbody>
+        </table>
+      </React.Fragment>
     )
   }
 }
