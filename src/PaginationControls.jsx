@@ -140,11 +140,14 @@ export default class PaginationControls extends React.Component {
             {nextButton}
           </div>
         }
-        <div className="pagination__summary">
-          {this.offset + 1}-{Math.min(this.offset + this.props.perPage, this.totalRecords)}
-          {` of `}
-          {this.totalRecords}
-        </div>
+        {
+          !this.props.noSummary &&
+          <div className="pagination__summary">
+            {this.offset + 1}-{Math.min(this.offset + this.props.perPage, this.totalRecords)}
+            {` of `}
+            {this.totalRecords}
+          </div>
+        }
       </div>
     )
   }
