@@ -27,22 +27,12 @@ export default class FileField extends React.Component {
     if (onChange) onChange(e.target.files[0])
   }
 
-  renderPreview() {
-    const { value, model } = this.props
-    if(!value || !value.url) return null
-    return <b>{ value.basename }</b>
-  }
-
   render() {
     const { name, value, multiple, onFocus, onlySpreadsheets, className } = this.props
-    let acceptedTypes = null
+    if (!value.allowedTypes) throw new Error("YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!")
 
     return (
-      <div className={className}>
-        <div className='preview'>
-          {/*{this.renderPreview()}*/}
-        </div>
-
+      <div className='file'>
         <input
           type="file"
           name={name}

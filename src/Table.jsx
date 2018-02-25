@@ -51,8 +51,7 @@ export default class CordTable extends React.Component {
       return <div className={`${this.props.className} no-results`}>No entries</div>
     return (
       <React.Fragment>
-        {this.loading + ""}
-        <table className={this.props.className}>
+        <table className={`${this.props.className}${this.loading ? ' loading' : ''}`}>
           <thead>{renderHead()}</thead>
           <tbody>{this.records.map(renderRow)}</tbody>
         </table>
