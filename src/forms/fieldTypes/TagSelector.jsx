@@ -82,7 +82,7 @@ export default class TagSelector extends React.Component {
             className="selected-item"
             onClick={this.handleRemoveSuggestion.bind(this, sel[0])}
           >
-            {sel[1]} XXX
+            {sel[1]} X
           </span>
         ))}
       </div>
