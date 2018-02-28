@@ -148,10 +148,10 @@ export default class PaginationControls extends React.Component {
       left = this.range(1, (middleArray[0] - 1))
     }
 
-    if (this.pageCount - showRange - 2 > middleArray[4]) {
+    if (this.pageCount - showRange - 2 > middleArray[middleArray.length - 1]) {
       right = this.range((this.pageCount - showRange), this.pageCount)
     } else {
-      right = this.range((middleArray[4] + 1), this.pageCount)
+      right = this.range((middleArray[middleArray.length - 1] + 1), this.pageCount)
     }
 
     if (left[left.length - 1] === middleArray[0] - 1) {

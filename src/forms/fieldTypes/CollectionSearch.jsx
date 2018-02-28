@@ -48,7 +48,7 @@ export default class CollectionSelectField extends React.Component {
   }
 
   renderSuggestions() {
-    if (!this.active || !this.inputValue || this.inputValue.length === 0) return null
+    if (!this.active) return null
     return (
       <div className="suggestions">
         {this.choices.map(choice => (
@@ -73,7 +73,6 @@ export default class CollectionSelectField extends React.Component {
     if (!this.loaded) return "LOADING!"
     return (
       <div className={className}>
-        XXX
         <BasicInput
           placeholder={this.props.placeholder || `Type for suggestions...`}
           value={this.inputValue || ''}
