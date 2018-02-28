@@ -113,41 +113,113 @@ export default class PaginationControls extends React.Component {
     }
   }
 
+  range(start, end) {
+    return Array(end - start + 1).fill().map((_, idx) => start + idx)
+  }
+
+  pageNumberArray() {
+    let showRange = 2
+
+    let showFrom = Number(this.currentPage) - showRange
+    let showTo = Number(this.currentPage) + showRange
+    if (showTo > this.pageCount) {
+      showFrom -= showTo - this.pageCount
+      showTo = this.pageCount
+
+    }
+
+    if (showFrom < 1) {
+      showTo += 1 - showFrom
+      showFrom = 1
+
+      if (showTo > this.pageCount) {
+        showTo = this.pageCount
+      }
+    }
+
+    let middleArray = this.range(showFrom, showTo)
+    let left = []
+    let right = []
+
+    if (showRange + 3 < middleArray[0]) {
+      left = this.range(1, (showRange + 1))
+      // left << :gap
+    } else {
+      left = this.range(1, (middleArray[0] - 1))
+    }
+
+    if (this.pageCount - showRange - 2 > middleArray[middleArray.length - 1]) {
+      right = this.range((this.pageCount - showRange), this.pageCount)
+    } else {
+      right = this.range((middleArray[middleArray.length - 1] + 1), this.pageCount)
+    }
+
+    if (left[left.length - 1] === middleArray[0] - 1) {
+      left = []
+      middleArray = this.range(1, middleArray[middleArray.length - 1])
+    }
+
+    if (middleArray[middleArray.length - 1] === right[0] - 1) {
+      middleArray = middleArray.concat(right)
+      right = []
+    }
+
+    return [left, middleArray, right]
+  }
+
+  renderPageNumbers(array){
+    return array.map(int => (
+      <a className="pagination__number" onClick={() => this.gotoPage(int)}>
+        {int}
+      </a>
+    ))
+  }
+
   render() {
     if (!this.totalRecords) return null
 
     const prevButton = this.firstPage ? (
       <a className="disabled pagination__previous">Previous</a>
     ) : (
-      <a className="pagination__previous" onClick={this.handlePrevious}>Previous</a>
+      <a className="pagination__previous" onClick={this.handlePrevious}>
+        Previous
+      </a>
     )
 
     const nextButton = this.firstPage ? (
       <a className="disabled pagination__next">Next</a>
     ) : (
-      <a className="pagination__next"  onClick={this.handleNext}>Next</a>
+      <a className="pagination__next" onClick={this.handleNext}>
+        Next
+      </a>
     )
 
+
     return (
-      <div className='pagination__wrapper'>
-        {
-          this.pageCount > 1 &&
+      <div className="pagination__wrapper">
+        {this.pageCount > 1 && (
           <div className="pagination">
             {prevButton}
-            {Array(this.pageCount)
-            .fill(0)
-            .map((_, p) => <a className="pagination__number" onClick={() => this.gotoPage(p + 1)}>{p + 1}</a>)}
+            {
+              this.pageNumberArray().filter(x => x.length > 1).map((handFeet, i)=>(
+                <React.Fragment>
+                  {
+                    i !== 0 && '...'
+                  }
+                  {this.renderPageNumbers(handFeet)}
+                </React.Fragment>
+              ))
+            }
             {nextButton}
           </div>
-        }
-        {
-          !this.props.noSummary &&
+        )}
+        {!this.props.noSummary && (
           <div className="pagination__summary">
             {this.offset + 1}-{Math.min(this.offset + this.props.perPage, this.totalRecords)}
             {` of `}
             {this.totalRecords}
           </div>
-        }
+        )}
       </div>
     )
   }
