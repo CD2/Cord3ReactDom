@@ -15,13 +15,17 @@ export default class CordReactComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.lookupId = this.id || this.props.id
-    if(!this.lookupId) throw new Error('No ID sent')
-    this.getRecord(this.lookupId)
+    if(this.Model){
+      this.lookupId = this.id || this.props.id
+      if(!this.lookupId) throw new Error('No ID sent')
+      this.getRecord(this.lookupId)
+    }
   }
 
   async componentWillReceiveProps(props) {
-    if (props.id && (props.id !== this.lookupId)) this.getRecord(props.id)
+    if(this.Model) {
+      if (props.id && (props.id !== this.lookupId)) this.getRecord(props.id)
+    }
   }
 
   async getRecord(id) {
@@ -31,7 +35,7 @@ export default class CordReactComponent extends React.Component {
   @observable record
 
   mainRender() {
-    if (!this.record) return 'Loading...'
+    if (this.Model && !this.record) return 'Loading...'
     return this._render()
   }
 }
