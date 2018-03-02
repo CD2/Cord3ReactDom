@@ -141,13 +141,11 @@ export default class Input extends React.Component {
     }
     return (
       <div className={`cord-field ${this.props.className}${errors.length > 0 ? ` errors` : ``}`}>
-            <label className="cord-label">
-              {type !== `checkbox` && !noLabel && fieldTitle}
-              {this.renderInput(type, value, onChange, fieldTitle)}
-            </label>
-          {description && (
-              <span className="description">{description}</span>
-          )}
+        <label className="cord-label">
+          {type !== `checkbox` && !noLabel && fieldTitle}
+          {this.renderInput(type, value, onChange, fieldTitle)}
+        </label>
+        {description && <span className="description">{description}</span>}
         {renderedErrors}
       </div>
     )

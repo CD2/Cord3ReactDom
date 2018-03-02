@@ -1,11 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
-import { observable } from 'mobx'
+import React from "react"
+import PropTypes from "prop-types"
+import { observer } from "mobx-react"
+import { observable } from "mobx"
 
 @observer
 export class Checkbox extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     fieldTitle: PropTypes.string,
@@ -18,11 +17,11 @@ export class Checkbox extends React.Component {
 
   @observable checked = this.props.value
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { onRawChange, onChange } = this.props
     if (onRawChange) onRawChange(e)
     if (onChange) {
-      onChange( e.target.checked )
+      onChange(e.target.checked)
       this.checked = e.target.checked
     }
   }
@@ -41,6 +40,5 @@ export class Checkbox extends React.Component {
       </React.Fragment>
     )
   }
-
 }
 export default Checkbox

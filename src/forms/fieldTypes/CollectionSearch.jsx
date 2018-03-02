@@ -27,9 +27,9 @@ export default class CollectionSelectField extends React.Component {
   unFocusInput = () => {
     this.active = false
   }
-  chooseValue = (val) => {
+  chooseValue = val => {
     this.props.onSelect && this.props.onSelect(val)
-    this.props.blankAfterSelect ? this.inputValue = '' : this.inputValue = val[1]
+    this.props.blankAfterSelect ? (this.inputValue = ``) : (this.inputValue = val[1])
   }
 
   constructor(props) {
@@ -43,7 +43,7 @@ export default class CollectionSelectField extends React.Component {
     if (this.choices) this.loaded = true
   }
 
-  componentWillReceiveProps(props){
+  componentWillReceiveProps(props) {
     if (this.props.initialValue !== props.initialValue) this.inputValue = props.initialValue
   }
 
@@ -55,8 +55,7 @@ export default class CollectionSelectField extends React.Component {
           <span
             key={choice}
             className="suggestions__item"
-            onMouseDown={() => this.chooseValue(choice)
-            }
+            onMouseDown={() => this.chooseValue(choice)}
           >
             {choice[1]}
           </span>
@@ -70,12 +69,12 @@ export default class CollectionSelectField extends React.Component {
 
   render() {
     const { onChange, value, defaultValue, className } = this.props
-    if (!this.loaded) return "LOADING!"
+    if (!this.loaded) return `LOADING!`
     return (
       <div className={className}>
         <BasicInput
           placeholder={this.props.placeholder || `Type for suggestions...`}
-          value={this.inputValue || ''}
+          value={this.inputValue || ``}
           onChange={this.handleChange}
           onFocus={this.focusInput}
           onBlur={this.unFocusInput}
