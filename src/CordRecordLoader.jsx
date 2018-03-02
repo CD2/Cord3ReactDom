@@ -1,8 +1,7 @@
-import React from 'react'
-import { redirect } from "lib/utils/router"
-import { observer } from 'mobx-react'
-import { observable } from 'mobx'
-
+import React from "react"
+import { observer } from "mobx-react"
+import { observable, reaction, computed } from "mobx"
+import invariant from "invariant"
 
 @observer
 export default class CordReactComponent extends React.Component {
@@ -11,31 +10,31 @@ export default class CordReactComponent extends React.Component {
 
     this._render = this.render
     this.render = this.mainRender
+  }
 
+  @computed
+  get id() {
+    return this._id || this.props.id
+  }
+  set id(val) {
+    this._id = val
   }
 
   componentDidMount() {
-    if(this.Model){
-      this.lookupId = this.id || this.props.id
-      if(!this.lookupId) throw new Error('No ID sent')
-      this.getRecord(this.lookupId)
-    }
+    invariant(this.Model !== undefined, `Model must be set`)
+    invariant(this.id !== undefined, `ID must be set`)
+
+    reaction(() => this.id, () => this.getRecord(), true)
   }
 
-  async componentWillReceiveProps(props) {
-    if(this.Model) {
-      if (props.id && (props.id !== this.lookupId)) this.getRecord(props.id)
-    }
-  }
-
-  async getRecord(id) {
-    this.record = await this.Model.find(id)
+  async getRecord() {
+    this.record = await this.Model.find(this.id)
   }
 
   @observable record
 
   mainRender() {
-    if (this.Model && !this.record) return 'Loading...'
+    if (this.Model && !this.record) return `Loading...`
     return this._render()
   }
 }
