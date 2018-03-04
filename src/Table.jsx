@@ -46,7 +46,6 @@ export default class CordTable extends React.Component {
 
   render() {
     const { renderRow, renderHead, collection } = this.props
-    console.log(`this.records`, this.records, collection)
     if (!this.loaded) return this.props.loadingContent || `LOADING...`
     if (this.records.length === 0) {
       return <div className={`${this.props.className} no-results`}>No entries</div>

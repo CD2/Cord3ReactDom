@@ -4,7 +4,7 @@ import { observable, reaction, computed } from "mobx"
 import invariant from "invariant"
 
 @observer
-export default class CordReactComponent extends React.Component {
+export default class ComponentWithRecord extends React.Component {
   constructor(...args) {
     super(...args)
 
@@ -16,6 +16,7 @@ export default class CordReactComponent extends React.Component {
   get id() {
     return this._id || this.props.id
   }
+
   set id(val) {
     this._id = val
   }
@@ -31,10 +32,14 @@ export default class CordReactComponent extends React.Component {
     this.record = await this.Model.find(this.id)
   }
 
+  renderLoading(){
+    return `Loading...`
+  }
+
   @observable record
 
   mainRender() {
-    if (this.Model && !this.record) return `Loading...`
+    if (this.Model && !this.record) return this.renderLoading()
     return this._render()
   }
 }
