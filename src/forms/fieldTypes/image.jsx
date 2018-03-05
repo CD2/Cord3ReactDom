@@ -32,13 +32,13 @@ export default class ImageField extends React.Component {
   renderPreview() {
     const { value, model } = this.props
     if (!value) return null
-    if (!value.url) return ""
+    if (!value.url) return ``
     return <img src={value.url} />
   }
 
   render() {
     const { name, value, multiple, onFocus } = this.props
-    if (!value.allowedTypes) throw new Error("YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!")
+    if (!value.allowedTypes) throw new Error(`YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!`)
     return (
       <div className={`image-field${!value || !value.url ? ` unselected` : ``}`}>
         <div>{this.renderPreview()}</div>

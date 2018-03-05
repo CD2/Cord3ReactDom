@@ -1,10 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
+import React from "react"
+import PropTypes from "prop-types"
+import { observer } from "mobx-react"
 
 @observer
 export default class FileField extends React.Component {
-
   static propTypes = {
     accepts: PropTypes.array,
     model: PropTypes.object,
@@ -22,27 +21,26 @@ export default class FileField extends React.Component {
     onlySpreadsheets: false,
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { onChange } = this.props
     if (onChange) onChange(e.target.files[0])
   }
 
   render() {
     const { name, value, multiple, onFocus, onlySpreadsheets, className } = this.props
-    if (!value.allowedTypes) throw new Error("YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!")
+    if (!value.allowedTypes) throw new Error(`YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!`)
 
     return (
-      <div className='file'>
+      <div className="file">
         <input
           type="file"
           name={name}
           multiple={multiple}
-          accept={value.allowedTypes.map(x => `.${x}`).join(',')}
+          accept={value.allowedTypes.map(x => `.${x}`).join(`,`)}
           onChange={this.handleChange}
           onFocus={onFocus}
         />
       </div>
     )
   }
-
 }

@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Provider } from "mobx-react"
-
 import { observable, action, computed } from "mobx"
 import { observer } from "mobx-react"
 
@@ -43,11 +42,12 @@ export default class FormFor extends React.Component {
 
   get autosaveTime() {
     const { autosave, allowDangourousAutoSaveTime } = this.props
-    if (typeof autosave === "boolean") return this.constructor.DEFAULT_AUTOSAVE_TIME
-    if (!allowDangourousAutoSaveTime && autosave < 1000)
+    if (typeof autosave === `boolean`) return this.constructor.DEFAULT_AUTOSAVE_TIME
+    if (!allowDangourousAutoSaveTime && autosave < 1000) {
       throw new Error(
-        "Autosave cannot be below 1 second. To override this pass an additional prop of `allowDangourousAutoSaveTime`",
+        `Autosave cannot be below 1 second. To override this pass an additional prop of \`allowDangourousAutoSaveTime\``,
       )
+    }
     return autosave
   }
 

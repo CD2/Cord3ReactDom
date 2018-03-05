@@ -1,8 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react"
+import PropTypes from "prop-types"
 
 export class TextArea extends React.Component {
-
   static propTypes = {
     initialValue: PropTypes.string,
     name: PropTypes.string,
@@ -19,7 +18,7 @@ export class TextArea extends React.Component {
     value: ``,
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { onChange } = this.props
     if (onChange) onChange(e.target.value)
   }
@@ -31,7 +30,7 @@ export class TextArea extends React.Component {
       <textarea
         name={name}
         defaultValue={initialValue}
-        className='textarea input'
+        className="textarea input"
         value={value || ``}
         placeholder={placeholder}
         onChange={this.handleChange}
@@ -41,6 +40,5 @@ export class TextArea extends React.Component {
       />
     )
   }
-
 }
 export default TextArea

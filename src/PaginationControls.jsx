@@ -114,7 +114,9 @@ export default class PaginationControls extends React.Component {
   }
 
   range(start, end) {
-    return Array(end - start + 1).fill().map((_, idx) => start + idx)
+    return Array(end - start + 1)
+      .fill()
+      .map((_, idx) => start + idx)
   }
 
   pageNumberArray() {
@@ -125,7 +127,6 @@ export default class PaginationControls extends React.Component {
     if (showTo > this.pageCount) {
       showFrom -= showTo - this.pageCount
       showTo = this.pageCount
-
     }
 
     if (showFrom < 1) {
@@ -142,16 +143,16 @@ export default class PaginationControls extends React.Component {
     let right = []
 
     if (showRange + 3 < middleArray[0]) {
-      left = this.range(1, (showRange + 1))
+      left = this.range(1, showRange + 1)
       // left << :gap
     } else {
-      left = this.range(1, (middleArray[0] - 1))
+      left = this.range(1, middleArray[0] - 1)
     }
 
     if (this.pageCount - showRange - 2 > middleArray[middleArray.length - 1]) {
-      right = this.range((this.pageCount - showRange), this.pageCount)
+      right = this.range(this.pageCount - showRange, this.pageCount)
     } else {
-      right = this.range((middleArray[middleArray.length - 1] + 1), this.pageCount)
+      right = this.range(middleArray[middleArray.length - 1] + 1, this.pageCount)
     }
 
     if (left[left.length - 1] === middleArray[0] - 1) {
@@ -167,7 +168,7 @@ export default class PaginationControls extends React.Component {
     return [left, middleArray, right]
   }
 
-  renderPageNumbers(array){
+  renderPageNumbers(array) {
     return array.map(int => (
       <a className="pagination__number" onClick={() => this.gotoPage(int)}>
         {int}
@@ -194,22 +195,19 @@ export default class PaginationControls extends React.Component {
       </a>
     )
 
-
     return (
       <div className="pagination__wrapper">
         {this.pageCount > 1 && (
           <div className="pagination">
             {prevButton}
-            {
-              this.pageNumberArray().filter(x => x.length > 1).map((handFeet, i)=>(
+            {this.pageNumberArray()
+              .filter(x => x.length > 1)
+              .map((handFeet, i) => (
                 <React.Fragment>
-                  {
-                    i !== 0 && '...'
-                  }
+                  {i !== 0 && `...`}
                   {this.renderPageNumbers(handFeet)}
                 </React.Fragment>
-              ))
-            }
+              ))}
             {nextButton}
           </div>
         )}

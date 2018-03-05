@@ -46,12 +46,13 @@ export default class CordTable extends React.Component {
 
   render() {
     const { renderRow, renderHead, collection } = this.props
-    if(!this.loaded) return this.props.loadingContent || 'LOADING...'
-    if (this.records.length === 0)
+    if (!this.loaded) return this.props.loadingContent || `LOADING...`
+    if (this.records.length === 0) {
       return <div className={`${this.props.className} no-results`}>No entries</div>
+    }
     return (
       <React.Fragment>
-        <table className={`${this.props.className}${this.loading ? ' loading' : ''}`}>
+        <table className={`${this.props.className}${this.loading ? ` loading` : ``}`}>
           <thead>{renderHead()}</thead>
           <tbody>{this.records.map(renderRow)}</tbody>
         </table>

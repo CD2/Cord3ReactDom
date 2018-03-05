@@ -54,7 +54,7 @@ export default class TagSelector extends React.Component {
   @observable selected = []
   @observable isFocused = false
 
-  @action handleToggleFocus = () => this.isFocused = !this.isFocused
+  @action handleToggleFocus = () => (this.isFocused = !this.isFocused)
 
   @action
   handleChange = val => {
@@ -104,10 +104,8 @@ export default class TagSelector extends React.Component {
             {suggestion[1]}
           </span>
         ))}
-        {
-          this.props.inputValue.length > 0 && this.suggestions.length < 1 &&
-          <span className="suggestions__item">No results</span>
-        }
+        {this.props.inputValue.length > 0 &&
+          this.suggestions.length < 1 && <span className="suggestions__item">No results</span>}
         {this.props.createFunction && this.props.createFunction()}
       </div>
     )
@@ -129,7 +127,7 @@ export default class TagSelector extends React.Component {
 
   render() {
     return (
-      <div className={this.props.className} >
+      <div className={this.props.className}>
         {this.renderSelected()}
         { this.isFocused && this.renderUnderlay() }
         <div style={{
