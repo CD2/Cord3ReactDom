@@ -13,7 +13,7 @@ export default class CollectionCheckBoxes extends React.Component {
   }
 
   async componentDidMount() {
-    this.values = this.props.values
+    this.values = this.props.value
     const { name_attribute, value_attribute, custom_attribute, collection } = this.props
     if (!collection) throw new Error(`You have not sent a collection - check your field!`)
     this.choices = await collection.pluck(value_attribute, name_attribute, custom_attribute)
