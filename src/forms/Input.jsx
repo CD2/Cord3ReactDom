@@ -10,6 +10,7 @@ import Checkbox from "./fieldTypes/checkbox"
 import Select from "./fieldTypes/Select"
 import CollectionSelect from "./fieldTypes/CollectionSelect"
 import CollectionTagSelector from "./fieldTypes/CollectionTagSelector"
+import CollectionCheckBoxes from "./fieldTypes/CollectionCheckBoxes"
 
 @inject(`form`)
 @observer
@@ -98,6 +99,19 @@ export default class Input extends React.Component {
             value={value}
           />
         )
+      case `collection-checkboxes`:
+        return (
+          <CollectionCheckBoxes
+            collection={this.props.collection}
+            name_attribute={this.props.name_attribute}
+            value_attribute={this.props.value_attribute}
+            custom_attribute={this.props.custom_attribute}
+            onChange={handleChange}
+            createFunction={this.props.createFunction}
+            customLabel={this.props.customLabel}
+            value={value}
+          />
+        )
       case `number`:
         return (
           <BasicInput
@@ -141,7 +155,7 @@ export default class Input extends React.Component {
     }
     return (
       <div className={`cord-field ${this.props.className}${errors.length > 0 ? ` errors` : ``}`}>
-        <label className="cord-label">{type !== `checkbox` && !noLabel && fieldTitle}</label>
+        <label className="cord-label">{type !== `collection-checkboxes` && type !== `checkbox` && !noLabel && fieldTitle}</label>
         {this.renderInput(type, value, onChange, fieldTitle)}
         {description && <span className="description">{description}</span>}
         {renderedErrors}
