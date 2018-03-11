@@ -41,17 +41,19 @@ export default class ImageField extends React.Component {
     if (!value.allowedTypes) throw new Error(`YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!`)
     return (
       <React.Fragment>
-        <div className={`image-field${!value || !value.url ? ` unselected` : ``}`}>
-          <div>{this.renderPreview()}</div>
-        </div>
-        <input
-          type="file"
-          name={name}
-          multiple={multiple}
-          accept={value.allowedTypes.map(x => `.${x}`).join(`,`)}
-          onChange={this.handleChange}
-          onFocus={onFocus}
-        />
+        <label style={{ cursor: "pointer" }}>
+          <div className={`image-field${!value || !value.url ? ` unselected` : ``}`}>
+            <div>{this.renderPreview()}</div>
+          </div>
+          <input
+            type="file"
+            name={name}
+            multiple={multiple}
+            accept={value.allowedTypes.map(x => `.${x}`).join(`,`)}
+            onChange={this.handleChange}
+            onFocus={onFocus}
+          />
+        </label>
       </React.Fragment>
     )
   }
