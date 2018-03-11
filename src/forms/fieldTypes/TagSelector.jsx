@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { observer } from "mobx-react"
-import { observable, computed, toJS, reaction, action } from "mobx"
+import { observable, computed, reaction, action } from "mobx"
 import BasicInput from "./BasicInput"
 
 @observer

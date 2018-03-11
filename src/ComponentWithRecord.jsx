@@ -30,6 +30,7 @@ export default class ComponentWithRecord extends React.Component {
 
   async getRecord() {
     this.record = await this.Model.find(this.id)
+    this.afterLookup && this.afterLookup(this.record)
   }
 
   renderLoading(){
