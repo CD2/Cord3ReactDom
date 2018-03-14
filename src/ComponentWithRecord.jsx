@@ -24,6 +24,7 @@ export default class ComponentWithRecord extends React.Component {
   componentDidMount() {
     invariant(this.Model !== undefined, `Model must be set`)
     invariant(this.id !== undefined, `ID must be set`)
+    this.getRecord()
 
     reaction(() => this.id, () => this.getRecord(), true)
   }
