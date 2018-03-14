@@ -5,7 +5,7 @@ import { observer } from "mobx-react"
 
 @observer
 export default class PaginationControls extends React.Component {
-  propTypes = {
+  static propTypes = {
     collection: PropTypes.object,
     perPage: PropTypes.number,
   }
