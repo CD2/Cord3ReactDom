@@ -112,35 +112,39 @@ export default class TagSelector extends React.Component {
   }
 
   renderUnderlay() {
-    return (<div
-      style={{
-        position: `fixed`,
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
-        zIndex: 100,
-      }}
-      onClick={this.handleToggleFocus}
-            />)
+    return (
+      <div
+        style={{
+          position: `fixed`,
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+          zIndex: 100,
+        }}
+        onClick={this.handleToggleFocus}
+      />
+    )
   }
 
   render() {
     return (
       <div className={this.props.className}>
         {this.renderSelected()}
-        { this.isFocused && this.renderUnderlay() }
-        <div style={{
-          position: 'relative',
-          zIndex: 101,
-        }}>
-        <BasicInput
-          placeholder={this.props.placeholder || `Type for suggestions...`}
-          value={this.inputValue}
-          onChange={this.handleChange}
-          onFocus={this.handleToggleFocus}
-        />
-        {this.isFocused && this.renderSuggestions()}
+        {this.isFocused && this.renderUnderlay()}
+        <div
+          style={{
+            position: `relative`,
+            zIndex: 101,
+          }}
+        >
+          <BasicInput
+            placeholder={this.props.placeholder || `Type for suggestions...`}
+            value={this.inputValue}
+            onChange={this.handleChange}
+            onFocus={this.handleToggleFocus}
+          />
+          {this.isFocused && this.renderSuggestions()}
         </div>
       </div>
     )

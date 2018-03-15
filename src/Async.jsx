@@ -40,9 +40,9 @@ export default class Async extends React.Component {
 
   componentDidMount() {
     this.prom = makeCancelable(this.props.promise)
-    this.prom.promise
-      .then(result => this.setState({ result, loading: false, loaded: true }))
-      .catch(error => this.setState({ errored: true, loading: false, result: error }))
+    this.prom.promise.
+      then(result => this.setState({ result, loading: false, loaded: true })).
+      catch(error => this.setState({ errored: true, loading: false, result: error }))
   }
   componentWillUnmount() {
     this.prom.promise.catch(e => console.error(e))

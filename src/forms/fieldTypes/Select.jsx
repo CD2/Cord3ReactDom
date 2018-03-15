@@ -34,7 +34,7 @@ export default class SelectField extends React.Component {
     return this.props.choices.map(choice => {
       let text
       let value
-      if (typeof choice === `string`) {
+      if (typeof choice === `string` || typeof choice === `number`) {
         text = choice
         value = choice
       } else if (Array.isArray(choice)) {

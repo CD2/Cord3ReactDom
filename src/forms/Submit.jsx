@@ -21,7 +21,7 @@ export default class Submit extends React.Component {
   get submitting() {}
 
   componentWillMount() {
-    const { submittingTime, form: { submitting } } = this.props
+    const { submittingTime, form: { submitting }} = this.props
     reaction(
       () => this.props.form.submitting,
       () => {
@@ -32,7 +32,7 @@ export default class Submit extends React.Component {
   }
 
   render() {
-    const { text, form: { record, submitting } } = this.props
+    const { text, form: { record, submitting }} = this.props
     const defaultText = (record.newRecord ? `Create ` : `Update `) + record.class.name
     if (submitting || this.submittingTimeout) return `submitting`
     return <input className="btn submit" type="submit" value={text || defaultText} />
