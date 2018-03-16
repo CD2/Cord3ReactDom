@@ -51,11 +51,11 @@ export default class Input extends React.Component {
     const { fullEditor, characterCount, placeholder, disabled } = this.props
     switch (type) {
     case `text-area`:
-      return <Textarea value={value} onChange={handleChange} />
+      return <Textarea value={value} onChange={handleChange} name={this.props.field} />
     case `image`:
-      return <ImageField value={value} onChange={handleChange} />
+      return <ImageField value={value} onChange={handleChange} name={this.props.field} />
     case `file`:
-      return <FileField value={value} onChange={handleChange} />
+      return <FileField value={value} onChange={handleChange} name={this.props.field} />
     case `checkbox`:
       return (
         <Checkbox
@@ -107,16 +107,17 @@ export default class Input extends React.Component {
           step={this.props.step}
           placeholder={placeholder}
           onChange={this.handleChange}
+          name={this.props.field}
         />
       )
     default:
       return (
         <BasicInput
-          type={type}
+          type={type || 'text'}
           value={value}
-          // disabled={disabled}
           placeholder={placeholder}
           onChange={this.handleChange}
+          name={this.props.field}
         />
       )
     }

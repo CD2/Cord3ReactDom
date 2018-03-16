@@ -25,6 +25,6 @@ export default class BasicInput extends React.Component {
 
   render() {
     const { onChange, className, ...otherProps } = this.props
-    return <input className="input" {...otherProps} onChange={this.handleChange} />
+    return <input className="input" {...otherProps} onChange={this.handleChange} name={this.props.name} />
   }
 }
