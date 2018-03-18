@@ -35,8 +35,10 @@ export class Checkbox extends React.Component {
           checked={this.checked || this.props.defaultValue}
           onChange={this.handleChange}
           type="checkbox"
+          name={this.props.name}
         />
-        <span style={{ display: `inline-block` }}>{customLabel || fieldTitle}</span>
+        <div style={{ display: `inline-block`, width: '20px', verticalAlign: 'middle' }}><span className="check-box" /></div>
+        <span style={{ display: `inline-block`, verticalAlign: 'middle' }}>{customLabel || fieldTitle}</span>
       </label>
     )
   }

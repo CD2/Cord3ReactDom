@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-export default class BasicInput extends React.Component {
+export default class DateInput extends React.Component {
   static propTypes = {
     initialValue: PropTypes.string,
     name: PropTypes.string,
@@ -24,11 +24,12 @@ export default class BasicInput extends React.Component {
   }
 
   render() {
-    const { onChange, className, ...otherProps } = this.props
+    const { value } = this.props
     return (
       <input
+        type="date"
         className="input"
-        {...otherProps}
+        value={value ? value.split('T')[0] : value}
         onChange={this.handleChange}
         name={this.props.name}
       />

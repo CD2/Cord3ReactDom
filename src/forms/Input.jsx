@@ -7,6 +7,7 @@ import Textarea from "./fieldTypes/textarea"
 import ImageField from "./fieldTypes/image"
 import FileField from "./fieldTypes/file"
 import Checkbox from "./fieldTypes/checkbox"
+import DateInput from "./fieldTypes/DateInput"
 import Select from "./fieldTypes/Select"
 import CollectionSelect from "./fieldTypes/CollectionSelect"
 import CollectionTagSelector from "./fieldTypes/CollectionTagSelector"
@@ -63,6 +64,7 @@ export default class Input extends React.Component {
           onChange={handleChange}
           fieldTitle={fieldTitle}
           defaultValue={this.props.defaultValue}
+          name={this.props.field}
         />
       )
     case `select`:
@@ -73,6 +75,7 @@ export default class Input extends React.Component {
           choices={this.props.choices}
           defaultValue={this.props.defaultValue}
           includeBlank={this.props.includeBlank}
+          name={this.props.field}
         />
       )
     case `collection_select`:
@@ -86,6 +89,7 @@ export default class Input extends React.Component {
           choices={this.props.choices}
           defaultValue={this.props.defaultValue}
           includeBlank={this.props.includeBlank}
+          name={this.props.field}
         />
       )
     case `collection-tag-select`:
@@ -97,6 +101,7 @@ export default class Input extends React.Component {
           onChange={handleChange}
           createFunction={this.props.createFunction}
           value={value}
+          name={this.props.field}
         />
       )
     case `number`:
@@ -105,6 +110,15 @@ export default class Input extends React.Component {
           type={type}
           value={value}
           step={this.props.step}
+          placeholder={placeholder}
+          onChange={this.handleChange}
+          name={this.props.field}
+        />
+      )
+    case `date`:
+      return (
+        <DateInput
+          value={value}
           placeholder={placeholder}
           onChange={this.handleChange}
           name={this.props.field}

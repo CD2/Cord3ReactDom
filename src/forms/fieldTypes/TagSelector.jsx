@@ -114,6 +114,7 @@ export default class TagSelector extends React.Component {
   renderUnderlay() {
     return (
       <div
+        className="underlay"
         style={{
           position: `fixed`,
           top: 0,
@@ -129,7 +130,15 @@ export default class TagSelector extends React.Component {
 
   render() {
     return (
-      <div className={this.props.className}>
+      <div
+        className={this.props.className}
+        onKeyDown={e => {
+          e = e || window.event
+          if (e.keyCode === 27) {
+            this.handleToggleFocus()
+          }
+        }}
+      >
         {this.renderSelected()}
         {this.isFocused && this.renderUnderlay()}
         <div
@@ -143,7 +152,9 @@ export default class TagSelector extends React.Component {
             value={this.inputValue}
             onChange={this.handleChange}
             onFocus={this.handleToggleFocus}
+            name={this.props.name}
           />
+          {this.isFocused && <div onClick={this.handleToggleFocus} className="close-tag">X</div> }
           {this.isFocused && this.renderSuggestions()}
         </div>
       </div>
