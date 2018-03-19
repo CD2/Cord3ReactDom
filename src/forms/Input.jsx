@@ -142,7 +142,7 @@ export default class Input extends React.Component {
     const value = this.props.value || this.record[field]
     const errors = this.record.errors.messagesFor(field)
     const onChange = this.handleChange
-    const fieldTitle = titleize(title ? title : field)
+    const fieldTitle = title ? title : titleize(field)
 
     if (render) return render(value, errors, this.handleChange)
 
