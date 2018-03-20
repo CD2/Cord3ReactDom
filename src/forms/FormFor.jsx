@@ -87,6 +87,7 @@ export default class FormFor extends React.Component {
   }
 
   render() {
+    console.log('hello', this.props.afterErrored)
     const { children } = this.props
     return (
       <Provider form={this.formObj}>
