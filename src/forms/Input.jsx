@@ -124,6 +124,19 @@ export default class Input extends React.Component {
           name={this.props.field}
         />
       )
+    case `collection-checkboxes`:
+      return (
+        <CollectionCheckBoxes
+          collection={this.props.collection}
+          name_attribute={this.props.name_attribute}
+          value_attribute={this.props.value_attribute}
+          custom_attribute={this.props.custom_attribute}
+          onChange={handleChange}
+          createFunction={this.props.createFunction}
+          customLabel={this.props.customLabel}
+          value={value}
+        />
+      )
     default:
       return (
         <BasicInput
