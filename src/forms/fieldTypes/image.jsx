@@ -40,7 +40,8 @@ export default class ImageField extends React.Component {
     const { name, value, multiple, onFocus } = this.props
     if (!value.allowedTypes) throw new Error(`YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!`)
     return (
-        <label style={{ cursor: "pointer" }}>
+      <React.Fragment>
+        <label style={{ cursor: `pointer` }}>
           <div className={`image-field${!value || !value.url ? ` unselected` : ``}`}>
             <div>{this.renderPreview()}</div>
           </div>

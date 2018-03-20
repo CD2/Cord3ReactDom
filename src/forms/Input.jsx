@@ -7,6 +7,7 @@ import Textarea from "./fieldTypes/textarea"
 import ImageField from "./fieldTypes/image"
 import FileField from "./fieldTypes/file"
 import Checkbox from "./fieldTypes/checkbox"
+import DateInput from "./fieldTypes/DateInput"
 import Select from "./fieldTypes/Select"
 import CollectionSelect from "./fieldTypes/CollectionSelect"
 import CollectionTagSelector from "./fieldTypes/CollectionTagSelector"
@@ -50,88 +51,89 @@ export default class Input extends React.Component {
   renderInput(type, value, handleChange, fieldTitle) {
     const { fullEditor, characterCount, placeholder, disabled } = this.props
     switch (type) {
-      case `text-area`:
-        return <Textarea value={value} onChange={handleChange} />
-      case `image`:
-        return <ImageField value={value} onChange={handleChange} />
-      case `file`:
-        return <FileField value={value} onChange={handleChange} />
-      case `checkbox`:
-        return (
-          <Checkbox
-            value={value}
-            onChange={handleChange}
-            fieldTitle={fieldTitle}
-            defaultValue={this.props.defaultValue}
-          />
-        )
-      case `select`:
-        return (
-          <Select
-            value={value}
-            onChange={handleChange}
-            choices={this.props.choices}
-            defaultValue={this.props.defaultValue}
-            includeBlank={this.props.includeBlank}
-          />
-        )
-      case `collection_select`:
-        return (
-          <CollectionSelect
-            value={value}
-            onChange={handleChange}
-            collection={this.props.collection}
-            name_attribute={this.props.name_attribute}
-            value_attribute={this.props.value_attribute}
-            choices={this.props.choices}
-            defaultValue={this.props.defaultValue}
-            includeBlank={this.props.includeBlank}
-          />
-        )
-      case `collection-tag-select`:
-        return (
-          <CollectionTagSelector
-            collection={this.props.collection}
-            name_attribute={this.props.name_attribute}
-            value_attribute={this.props.value_attribute}
-            onChange={handleChange}
-            createFunction={this.props.createFunction}
-            value={value}
-          />
-        )
-      case `collection-checkboxes`:
-        return (
-          <CollectionCheckBoxes
-            collection={this.props.collection}
-            name_attribute={this.props.name_attribute}
-            value_attribute={this.props.value_attribute}
-            custom_attribute={this.props.custom_attribute}
-            onChange={handleChange}
-            createFunction={this.props.createFunction}
-            customLabel={this.props.customLabel}
-            value={value}
-          />
-        )
-      case `number`:
-        return (
-          <BasicInput
-            type={type}
-            value={value}
-            step={this.props.step}
-            placeholder={placeholder}
-            onChange={this.handleChange}
-          />
-        )
-      default:
-        return (
-          <BasicInput
-            type={type}
-            value={value}
-            // disabled={disabled}
-            placeholder={placeholder}
-            onChange={this.handleChange}
-          />
-        )
+    case `text-area`:
+      return <Textarea value={value} onChange={handleChange} name={this.props.field} />
+    case `image`:
+      return <ImageField value={value} onChange={handleChange} name={this.props.field} />
+    case `file`:
+      return <FileField value={value} onChange={handleChange} name={this.props.field} />
+    case `checkbox`:
+      return (
+        <Checkbox
+          value={value}
+          onChange={handleChange}
+          fieldTitle={fieldTitle}
+          defaultValue={this.props.defaultValue}
+          name={this.props.field}
+        />
+      )
+    case `select`:
+      return (
+        <Select
+          value={value}
+          onChange={handleChange}
+          choices={this.props.choices}
+          defaultValue={this.props.defaultValue}
+          includeBlank={this.props.includeBlank}
+          name={this.props.field}
+        />
+      )
+    case `collection_select`:
+      return (
+        <CollectionSelect
+          value={value}
+          onChange={handleChange}
+          collection={this.props.collection}
+          name_attribute={this.props.name_attribute}
+          value_attribute={this.props.value_attribute}
+          choices={this.props.choices}
+          defaultValue={this.props.defaultValue}
+          includeBlank={this.props.includeBlank}
+          name={this.props.field}
+        />
+      )
+    case `collection-tag-select`:
+      return (
+        <CollectionTagSelector
+          collection={this.props.collection}
+          name_attribute={this.props.name_attribute}
+          value_attribute={this.props.value_attribute}
+          onChange={handleChange}
+          createFunction={this.props.createFunction}
+          value={value}
+          name={this.props.field}
+        />
+      )
+    case `number`:
+      return (
+        <BasicInput
+          type={type}
+          value={value}
+          step={this.props.step}
+          placeholder={placeholder}
+          onChange={this.handleChange}
+          name={this.props.field}
+        />
+      )
+    case `date`:
+      return (
+        <DateInput
+          value={value}
+          placeholder={placeholder}
+          onChange={this.handleChange}
+          name={this.props.field}
+        />
+      )
+    default:
+      return (
+        <BasicInput
+          type={type || 'text'}
+          value={value}
+          placeholder={placeholder}
+          onChange={this.handleChange}
+          name={this.props.field}
+        />
+      )
     }
   }
 
@@ -140,7 +142,7 @@ export default class Input extends React.Component {
     const value = this.props.value || this.record[field]
     const errors = this.record.errors.messagesFor(field)
     const onChange = this.handleChange
-    const fieldTitle = titleize(title ? title : field)
+    const fieldTitle = title ? title : titleize(field)
 
     if (render) return render(value, errors, this.handleChange)
 
@@ -155,7 +157,9 @@ export default class Input extends React.Component {
     }
     return (
       <div className={`cord-field ${this.props.className}${errors.length > 0 ? ` errors` : ``}`}>
-        <label className="cord-label">{type !== `collection-checkboxes` && type !== `checkbox` && !noLabel && fieldTitle}</label>
+        <label className="cord-label">
+          {type !== `collection-checkboxes` && type !== `checkbox` && !noLabel && fieldTitle}
+        </label>
         {this.renderInput(type, value, onChange, fieldTitle)}
         {description && <span className="description">{description}</span>}
         {renderedErrors}

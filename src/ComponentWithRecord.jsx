@@ -12,28 +12,30 @@ export default class ComponentWithRecord extends React.Component {
     this.render = this.mainRender
   }
 
+  componentDidMount() {
+    invariant(this.Model !== undefined, `Model must be set`)
+    invariant(this.id !== undefined, `ID must be set`)
+    this.getRecord()
+
+    reaction(() => this.id, () => this.getRecord(), true)
+  }
+
   @computed
   get id() {
-    return this._id || this.props.id
+    return  this._id || this.props.id
   }
 
   set id(val) {
     this._id = val
   }
 
-  componentDidMount() {
-    invariant(this.Model !== undefined, `Model must be set`)
-    invariant(this.id !== undefined, `ID must be set`)
-
-    reaction(() => this.id, () => this.getRecord(), true)
-  }
-
   async getRecord() {
+    this.record = null
     this.record = await this.Model.find(this.id)
     this.afterLookup && this.afterLookup(this.record)
   }
 
-  renderLoading(){
+  renderLoading() {
     return `Loading...`
   }
 

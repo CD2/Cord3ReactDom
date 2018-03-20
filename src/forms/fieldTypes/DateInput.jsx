@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-export class TextArea extends React.Component {
+export default class DateInput extends React.Component {
   static propTypes = {
     initialValue: PropTypes.string,
     name: PropTypes.string,
@@ -24,24 +24,15 @@ export class TextArea extends React.Component {
   }
 
   render() {
-    const { name, value, placeholder, initialValue, onFocus, onKeyPress } = this.props
-
+    const { value } = this.props
     return (
-      <React.Fragment>
-        <textarea
-          name={name}
-          defaultValue={initialValue}
-          className="textarea input"
-          value={value || ``}
-          placeholder={placeholder}
-          onChange={this.handleChange}
-          onFocus={onFocus}
-          onKeyPress={onKeyPress}
-          rows={5}
-        />
-        <input type="hidden" />
-      </React.Fragment>
+      <input
+        type="date"
+        className="input"
+        value={value ? value.split('T')[0] : value}
+        onChange={this.handleChange}
+        name={this.props.name}
+      />
     )
   }
 }
-export default TextArea

@@ -29,18 +29,16 @@ export class Checkbox extends React.Component {
   render() {
     const { className, fieldTitle, customLabel } = this.props
     return (
-      <label style={{marginTop: '8px'}}>
+      <label style={{ marginTop: `8px` }}>
         <input
           className="checkbox"
           checked={this.checked || this.props.defaultValue}
           onChange={this.handleChange}
           type="checkbox"
+          name={this.props.name}
         />
-        <span style={{display: 'inline-block'}}>
-          {
-            customLabel || fieldTitle
-          }
-        </span>
+        <div style={{ display: `inline-block`, width: '20px', verticalAlign: 'middle' }}><span className="check-box" /></div>
+        <span style={{ display: `inline-block`, verticalAlign: 'middle' }}>{customLabel || fieldTitle}</span>
       </label>
     )
   }

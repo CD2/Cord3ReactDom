@@ -2,10 +2,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import { observable, computed, action, reaction } from "mobx"
 import { observer } from "mobx-react"
+import { SelectField } from "./index"
 
 @observer
 export default class PaginationControls extends React.Component {
-  propTypes = {
+  static propTypes = {
     collection: PropTypes.object,
     perPage: PropTypes.number,
   }
@@ -114,9 +115,9 @@ export default class PaginationControls extends React.Component {
   }
 
   range(start, end) {
-    return Array(end - start + 1)
-      .fill()
-      .map((_, idx) => start + idx)
+    return Array(end - start + 1).
+      fill().
+      map((_, idx) => start + idx)
   }
 
   pageNumberArray() {
@@ -168,12 +169,35 @@ export default class PaginationControls extends React.Component {
     return [left, middleArray, right]
   }
 
-  renderPageNumbers(array) {
+  renderPageNumbers = array => {
+    const currentPage = this.currentPage
     return array.map(int => (
-      <a className="pagination__number" onClick={() => this.gotoPage(int)}>
+      <a
+        className={`pagination__number${int === Number(currentPage) ? ` active` : ``}`}
+        onClick={() => this.gotoPage(int)}
+      >
         {int}
       </a>
     ))
+  }
+
+  handleChange = val => {
+    this.gotoPage(val)
+  }
+
+  renderSelectPageChange() {
+    if (this.props.showSelect || (!this.props.hideSelect && this.pageCount > 7)) {
+      return (
+        <div className="pagination__jump">
+          <span>Goto:</span>
+          <SelectField
+            value={this.currentPage}
+            onChange={this.handleChange}
+            choices={this.range(1, this.pageCount)}
+          />
+        </div>
+      )
+    }
   }
 
   render() {
@@ -200,15 +224,16 @@ export default class PaginationControls extends React.Component {
         {this.pageCount > 1 && (
           <div className="pagination">
             {prevButton}
-            {this.pageNumberArray()
-              .filter(x => x.length > 1)
-              .map((handFeet, i) => (
+            {this.pageNumberArray().
+              filter(x => x.length > 1).
+              map((handFeet, i) => (
                 <React.Fragment>
                   {i !== 0 && `...`}
                   {this.renderPageNumbers(handFeet)}
                 </React.Fragment>
               ))}
             {nextButton}
+            {this.renderSelectPageChange()}
           </div>
         )}
         {!this.props.noSummary && (

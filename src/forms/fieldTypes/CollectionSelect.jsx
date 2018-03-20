@@ -32,7 +32,7 @@ export default class CollectionSelectField extends React.Component {
   }
 
   render() {
-    const { onChange, value, defaultValue } = this.props
+    const { onChange, value, defaultValue, name } = this.props
     if (!this.choices) return `LOADING!`
     return (
       <Select
@@ -41,6 +41,7 @@ export default class CollectionSelectField extends React.Component {
         onChange={onChange}
         includeBlank={this.props.includeBlank}
         defaultValue={defaultValue}
+        name={name}
       />
     )
   }

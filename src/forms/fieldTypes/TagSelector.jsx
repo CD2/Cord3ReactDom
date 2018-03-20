@@ -112,35 +112,50 @@ export default class TagSelector extends React.Component {
   }
 
   renderUnderlay() {
-    return (<div
-      style={{
-        position: `fixed`,
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
-        zIndex: 100,
-      }}
-      onClick={this.handleToggleFocus}
-            />)
+    return (
+      <div
+        className="underlay"
+        style={{
+          position: `fixed`,
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+          zIndex: 100,
+        }}
+        onClick={this.handleToggleFocus}
+      />
+    )
   }
 
   render() {
     return (
-      <div className={this.props.className}>
+      <div
+        className={this.props.className}
+        onKeyDown={e => {
+          e = e || window.event
+          if (e.keyCode === 27) {
+            this.handleToggleFocus()
+          }
+        }}
+      >
         {this.renderSelected()}
-        { this.isFocused && this.renderUnderlay() }
-        <div style={{
-          position: 'relative',
-          zIndex: 101,
-        }}>
-        <BasicInput
-          placeholder={this.props.placeholder || `Type for suggestions...`}
-          value={this.inputValue}
-          onChange={this.handleChange}
-          onFocus={this.handleToggleFocus}
-        />
-        {this.isFocused && this.renderSuggestions()}
+        {this.isFocused && this.renderUnderlay()}
+        <div
+          style={{
+            position: `relative`,
+            zIndex: 101,
+          }}
+        >
+          <BasicInput
+            placeholder={this.props.placeholder || `Type for suggestions...`}
+            value={this.inputValue}
+            onChange={this.handleChange}
+            onFocus={this.handleToggleFocus}
+            name={this.props.name}
+          />
+          {this.isFocused && <div onClick={this.handleToggleFocus} className="close-tag">X</div> }
+          {this.isFocused && this.renderSuggestions()}
         </div>
       </div>
     )
