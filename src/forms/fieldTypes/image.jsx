@@ -54,6 +54,7 @@ export default class ImageField extends React.Component {
             onFocus={onFocus}
           />
         </label>
+      </React.Fragment>
     )
   }
 }
