@@ -29,6 +29,13 @@ export default class CollectionSelectField extends React.Component {
     const { name_attribute, value_attribute, collection } = this.props
     if (!collection) throw new Error(`You have not sent a collection - check your field!`)
     this.choices = await collection.pluck(value_attribute, name_attribute)
+    if (this.props.sortAlphabetically) {
+      this.choices = this.choices.sort((a, b) => {
+        if(a[1] < b[1]) return -1
+        if(a[1] > b[1]) return 1
+        return 0
+      })
+    }
   }
 
   render() {

@@ -89,6 +89,7 @@ export default class Input extends React.Component {
           choices={this.props.choices}
           defaultValue={this.props.defaultValue}
           includeBlank={this.props.includeBlank}
+          sortAlphabetically={this.props.sortAlphabetically}
           name={this.props.field}
         />
       )
