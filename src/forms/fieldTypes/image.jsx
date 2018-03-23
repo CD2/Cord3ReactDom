@@ -30,10 +30,10 @@ export default class ImageField extends React.Component {
   }
 
   renderPreview() {
-    const { value, model } = this.props
+    const { value } = this.props
     if (!value) return null
     if (!value.url) return ``
-    return <img src={value.url} />
+    return <img src={value.url} alt="img" />
   }
 
   render() {

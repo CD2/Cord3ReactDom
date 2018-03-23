@@ -49,7 +49,7 @@ export default class SelectField extends React.Component {
   }
 
   handleChange = e => {
-    const { onRawChange, onChange } = this.props
+    const { onChange } = this.props
     if (onChange) onChange(e.target.value)
   }
 
@@ -83,15 +83,16 @@ export default class SelectField extends React.Component {
   }
 
   render() {
-    const { name, value, disabled, className } = this.props
+    const { name, value, disabled } = this.props
     return (
       <div className="select">
         <select
           name={name}
           value={value || ``}
           disabled={disabled}
+          className={`select-input ${name}`}          
           onChange={this.handleChange}
-          className={`select-input ${name}`}
+
         >
           {this.renderChoices()}
         </select>

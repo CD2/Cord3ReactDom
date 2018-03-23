@@ -6,11 +6,33 @@ import BasicInput from "./BasicInput"
 
 @observer
 export default class CollectionSelectField extends React.Component {
-  static propTypes = {
-    defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  static propTypes = {    
+    blankAfterSelect: PropTypes.bool,
+    className: PropTypes.string,
     collection: PropTypes.object,
+    defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    initialValue: PropTypes.any,
     name: PropTypes.string,
+    onChange: PropTypes.func,
+    onSelect: PropTypes.func,
+    placeholder: PropTypes.any,
     value: PropTypes.string,
+  }
+
+  
+  constructor(props) {
+    super(props)
+    this.setupChoices()
+  }
+
+  componentWillReceiveProps(props) {
+    if (this.props.initialValue !== props.initialValue) this.inputValue = props.initialValue
+  }
+
+  async setupChoices() {
+    const { name_attribute, value_attribute, collection } = this.props
+    this.choices = await collection.pluck(value_attribute, name_attribute)
+    if (this.choices) this.loaded = true
   }
 
   @observable inputValue = this.props.initialValue
@@ -21,10 +43,10 @@ export default class CollectionSelectField extends React.Component {
     this.inputValue = val
   }
 
-  focusInput = () => {
+  handleFocusInput = () => {
     this.active = true
   }
-  unFocusInput = () => {
+  handleUnFocusInput = () => {
     this.active = false
   }
   chooseValue = val => {
@@ -32,20 +54,6 @@ export default class CollectionSelectField extends React.Component {
     this.props.blankAfterSelect ? (this.inputValue = ``) : (this.inputValue = val[1])
   }
 
-  constructor(props) {
-    super(props)
-    this.setupChoices()
-  }
-
-  async setupChoices() {
-    const { name_attribute, value_attribute, collection } = this.props
-    this.choices = await collection.pluck(value_attribute, name_attribute)
-    if (this.choices) this.loaded = true
-  }
-
-  componentWillReceiveProps(props) {
-    if (this.props.initialValue !== props.initialValue) this.inputValue = props.initialValue
-  }
 
   renderSuggestions() {
     if (!this.active) return null
@@ -68,7 +76,7 @@ export default class CollectionSelectField extends React.Component {
   }
 
   render() {
-    const { onChange, value, defaultValue, className } = this.props
+    const { className } = this.props
     if (!this.loaded) return `LOADING!`
     return (
       <div className={className}>
@@ -76,8 +84,8 @@ export default class CollectionSelectField extends React.Component {
           placeholder={this.props.placeholder || `Type for suggestions...`}
           value={this.inputValue || ``}
           onChange={this.handleChange}
-          onFocus={this.focusInput}
-          onBlur={this.unFocusInput}
+          onFocus={this.handleFocusInput}
+          onBlur={this.handleUnFocusInput}
         />
         {this.renderSuggestions()}
       </div>

@@ -8,6 +8,7 @@ import Checkbox from "./checkbox"
 export default class CollectionCheckBoxes extends React.Component {
   static propTypes = {
     collection: PropTypes.func,
+    customLabel: PropTypes.func,
     name_attribute: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.any,

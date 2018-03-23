@@ -34,10 +34,10 @@ export class TextArea extends React.Component {
           className="textarea input"
           value={value || ``}
           placeholder={placeholder}
+          rows={5}
           onChange={this.handleChange}
           onFocus={onFocus}
           onKeyPress={onKeyPress}
-          rows={5}
         />
         <input type="hidden" />
       </React.Fragment>

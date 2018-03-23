@@ -7,29 +7,29 @@ import { observer, inject } from "mobx-react"
 @observer
 export default class Submit extends React.Component {
   static propTypes = {
-    form: PropTypes.object,
-    text: PropTypes.string,
+    form: PropTypes.object,    
     submittingTime: PropTypes.number,
+    text: PropTypes.string,
   }
 
   static defaultProps = {
     submittingTime: 500,
   }
 
-  @observable submittingTimeout = false
-
-  get submitting() {}
-
   componentWillMount() {
-    const { submittingTime, form: { submitting }} = this.props
+    const { submittingTime, form } = this.props
     reaction(
-      () => this.props.form.submitting,
+      () => form.submitting,
       () => {
         this.submittingTimeout = true
         setTimeout(() => (this.submittingTimeout = false), submittingTime)
       },
     )
   }
+
+  get submitting() {}
+
+  @observable submittingTimeout = false
 
   render() {
     const { text, form: { record, submitting }} = this.props

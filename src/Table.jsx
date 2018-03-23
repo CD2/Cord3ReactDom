@@ -1,19 +1,13 @@
 import React from "react"
 import { observable, reaction } from "mobx"
 import { observer } from "mobx-react"
+import PropTypes from "prop-types"
 
 @observer
 export default class CordCollection extends React.Component {
-  // static propTypes = {
-  //   collection: PropTypes.object,
-  //   renderRow: PropTypes.func,
-  //   renderHead: PropTypes.func,
-  // }
-
-  @observable recordsPromise
-  @observable records = []
-  @observable loading = false
-  @observable loaded = false
+  static propTypes = {
+    collection: PropTypes.object,
+  }
 
   componentWillMount() {
     const { collection } = this.props
@@ -34,14 +28,19 @@ export default class CordCollection extends React.Component {
     if (this.props.collection !== props.collection) this.recordsPromise = props.collection.toArray()
   }
 
+  componentWillUnmount() {
+    this.cleanup()
+  }
+
+  @observable recordsPromise
+  @observable records = []
+  @observable loading = false
+  @observable loaded = false
+
   handleCollectionChange = async () => {
     this.loading = true
     this.records = await this.props.collection.toArray()
     this.loading = false
-  }
-
-  componentWillUnmount() {
-    this.cleanup()
   }
 
   render() {
@@ -55,7 +54,7 @@ export default class CordCollection extends React.Component {
 
 export class CordTable  extends CordCollection {
   render() {
-    const { renderRow, renderHead, collection } = this.props
+    const { renderRow, renderHead } = this.props
     if (!this.loaded) return this.props.loadingContent || `LOADING...`
     if (this.records.length === 0) {
       return <div className={`${this.props.className} no-results`}>No entries</div>
