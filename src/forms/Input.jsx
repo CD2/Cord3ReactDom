@@ -25,7 +25,7 @@ export default class Input extends React.Component {
     form: PropTypes.object,
     fullEditor: PropTypes.any, 
     onChange: PropTypes.func,
-    placeholder: PropTypes.ImageField, 
+    placeholder: PropTypes.any, 
     render: PropTypes.func,
     title: PropTypes.string,
     
