@@ -1,6 +1,7 @@
 export { default as Async } from "./Async"
 export { default as PaginationControls } from "./PaginationControls"
-export { default as Table } from "./Table"
+export { CordTable as Table } from "./Table"
+export { default as CordCollection } from "./Table"
 export { default as FormFor } from "./forms/FormFor"
 export { default as Input } from "./forms/Input"
 export { default as BasicInput } from "./forms/fieldTypes/BasicInput"

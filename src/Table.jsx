@@ -3,7 +3,7 @@ import { observable, reaction } from "mobx"
 import { observer } from "mobx-react"
 
 @observer
-export default class CordTable extends React.Component {
+export default class CordCollection extends React.Component {
   // static propTypes = {
   //   collection: PropTypes.object,
   //   renderRow: PropTypes.func,
@@ -45,6 +45,16 @@ export default class CordTable extends React.Component {
   }
 
   render() {
+    return (
+      <React.Fragment>
+        Overwrite this render method
+      </React.Fragment>
+    )
+  }
+}
+
+export class CordTable  extends CordCollection {
+  render() {
     const { renderRow, renderHead, collection } = this.props
     if (!this.loaded) return this.props.loadingContent || `LOADING...`
     if (this.records.length === 0) {
@@ -60,3 +70,4 @@ export default class CordTable extends React.Component {
     )
   }
 }
+
