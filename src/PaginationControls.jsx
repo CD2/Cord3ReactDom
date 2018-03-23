@@ -7,10 +7,14 @@ import { SelectField } from "./index"
 @observer
 export default class PaginationControls extends React.Component {
   static propTypes = {
-    collection: PropTypes.object,
+    collection: PropTypes.object, 
+    hideSelect: PropTypes.bool,
+    noSummary: PropTypes.bool,
+    onPageChange: PropTypes.func,
     page: PropTypes.number,
     perPage: PropTypes.number,
-   
+    showSelect: PropTypes.bool,
+    
   }
 
   static defaultProps = {

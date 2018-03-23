@@ -16,14 +16,19 @@ import CollectionCheckBoxes from "./fieldTypes/CollectionCheckBoxes"
 @inject(`form`)
 @observer
 export default class Input extends React.Component {
-  static propTypes = {
+  static propTypes = {    
+    characterCount: PropTypes.number, 
     className: PropTypes.string,
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
+    disabled: PropTypes.bool,
     field: PropTypes.string,
     form: PropTypes.object,
+    fullEditor: PropTypes.any, 
     onChange: PropTypes.func,
+    placeholder: PropTypes.ImageField, 
     render: PropTypes.func,
     title: PropTypes.string,
+    
   }
 
   constructor(props) {
@@ -49,40 +54,39 @@ export default class Input extends React.Component {
   }
 
   renderInput(type, value, handleChange, fieldTitle) {
-    const { fullEditor, characterCount, placeholder, disabled } = this.props
+    const { placeholder } = this.props
     switch (type) {
     case `text-area`:
-      return <Textarea value={value} onChange={handleChange} name={this.props.field} />
+      return <Textarea value={value}  name={this.props.field} onChange={handleChange} />
     case `image`:
-      return <ImageField value={value} onChange={handleChange} name={this.props.field} />
+      return <ImageField value={value}  name={this.props.field} onChange={handleChange} />
     case `file`:
-      return <FileField value={value} onChange={handleChange} name={this.props.field} />
+      return <FileField value={value}  name={this.props.field} onChange={handleChange} />
     case `checkbox`:
       return (
         <Checkbox
           value={value}
-          onChange={handleChange}
           fieldTitle={fieldTitle}
           defaultValue={this.props.defaultValue}
           name={this.props.field}
+          onChange={handleChange}
         />
       )
     case `select`:
       return (
         <Select
           value={value}
-          onChange={handleChange}
           choices={this.props.choices}
           defaultValue={this.props.defaultValue}
           includeBlank={this.props.includeBlank}
           name={this.props.field}
+          onChange={handleChange}
         />
       )
     case `collection_select`:
       return (
         <CollectionSelect
           value={value}
-          onChange={handleChange}
           collection={this.props.collection}
           name_attribute={this.props.name_attribute}
           value_attribute={this.props.value_attribute}
@@ -91,6 +95,7 @@ export default class Input extends React.Component {
           includeBlank={this.props.includeBlank}
           sortAlphabetically={this.props.sortAlphabetically}
           name={this.props.field}
+          onChange={handleChange}
         />
       )
     case `collection-tag-select`:
@@ -99,10 +104,10 @@ export default class Input extends React.Component {
           collection={this.props.collection}
           name_attribute={this.props.name_attribute}
           value_attribute={this.props.value_attribute}
-          onChange={handleChange}
           createFunction={this.props.createFunction}
           value={value}
-          name={this.props.field}
+          name={this.props.field} 
+          onChange={handleChange}
         />
       )
     case `number`:
@@ -112,8 +117,8 @@ export default class Input extends React.Component {
           value={value}
           step={this.props.step}
           placeholder={placeholder}
-          onChange={this.handleChange}
           name={this.props.field}
+          onChange={this.handleChange}
         />
       )
     case `date`:
@@ -121,8 +126,8 @@ export default class Input extends React.Component {
         <DateInput
           value={value}
           placeholder={placeholder}
-          onChange={this.handleChange}
           name={this.props.field}
+          onChange={this.handleChange}
         />
       )
     case `collection-checkboxes`:
@@ -132,10 +137,10 @@ export default class Input extends React.Component {
           name_attribute={this.props.name_attribute}
           value_attribute={this.props.value_attribute}
           custom_attribute={this.props.custom_attribute}
-          onChange={handleChange}
           createFunction={this.props.createFunction}
           customLabel={this.props.customLabel}
-          value={value}
+          value={value} 
+          onChange={handleChange}
         />
       )
     default:
@@ -144,8 +149,8 @@ export default class Input extends React.Component {
           type={type || 'text'}
           value={value}
           placeholder={placeholder}
+          name={this.props.field} 
           onChange={this.handleChange}
-          name={this.props.field}
         />
       )
     }
