@@ -77,7 +77,7 @@ export default class CollectionTagSelector extends React.Component {
     this.props.onChange(tagArr)
   }
 
-  onHandleCreate = () => {
+  renderCreate = () => {
     if (this.props.createFunction) {
       return (
         <span
@@ -99,7 +99,7 @@ export default class CollectionTagSelector extends React.Component {
         options={suggestions}
         values={this.initialValues}
         renderNoResults={() => <b>No Idea, create new? {this.inputValue}</b>}
-        createFunction={this.onHandleCreate}   
+        createFunction={this.renderCreate}   
         name={this.props.name}
         onChange={this.handleChange}
         onInputChange={this.handleValueChange}
