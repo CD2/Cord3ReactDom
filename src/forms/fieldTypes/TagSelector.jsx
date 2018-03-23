@@ -7,24 +7,19 @@ import BasicInput from "./BasicInput"
 @observer
 export default class TagSelector extends React.Component {
   static propTypes = {
+    className: PropTypes.string,
+    createFunction: PropTypes.func,
     inputValue: PropTypes.string,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    onInputChange: PropTypes.func,
     options: PropTypes.array,
+    placeholder: PropTypes.any,
     values: PropTypes.object,
   }
 
   static defaultProps = {
     inputValue: ``,
-  }
-
-  @computed
-  get suggestions() {
-    if (this.props.inputValue === ``) return this.props.options.slice(0, 10)
-    return this.props.options.filter(opt => {
-      return (
-        opt[1].toLowerCase().indexOf(this.props.inputValue.toLowerCase()) > -1 &&
-        !this.selected.map(x => x[0]).includes(opt[0])
-      )
-    })
   }
 
   componentWillMount() {
@@ -48,6 +43,17 @@ export default class TagSelector extends React.Component {
   componentWillReceiveProps(props) {
     if (this.selected.length !== props.values.length) this.selected = props.values || []
     if (this.inputValue !== props.inputValue) this.inputValue = props.inputValue
+  }
+
+  @computed
+  get suggestions() {
+    if (this.props.inputValue === ``) return this.props.options.slice(0, 10)
+    return this.props.options.filter(opt => {
+      return (
+        opt[1].toLowerCase().indexOf(this.props.inputValue.toLowerCase()) > -1 &&
+        !this.selected.map(x => x[0]).includes(opt[0])
+      )
+    })
   }
 
   @observable inputValue = ``
@@ -150,11 +156,12 @@ export default class TagSelector extends React.Component {
           <BasicInput
             placeholder={this.props.placeholder || `Type for suggestions...`}
             value={this.inputValue}
-            onChange={this.handleChange}
-            onFocus={this.handleToggleFocus}
             name={this.props.name}
+            onFocus={this.handleToggleFocus}            
+            onChange={this.handleChange}
+
           />
-          {this.isFocused && <div onClick={this.handleToggleFocus} className="close-tag">X</div> }
+          {this.isFocused && <div className="close-tag" onClick={this.handleToggleFocus} >X</div> }
           {this.isFocused && this.renderSuggestions()}
         </div>
       </div>
