@@ -11,7 +11,10 @@ export default class BasicInput extends React.Component {
     onRawChange: PropTypes.func,
     placeholder: PropTypes.string,
     type: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   }
 
   static defaultProps = {
@@ -24,13 +27,14 @@ export default class BasicInput extends React.Component {
   }
 
   render() {
-    const { onChange, className, ...otherProps } = this.props
+    const { onChange, value, ...otherProps } = this.props
     return (
       <input
         className="input"
         {...otherProps}
-        onChange={this.handleChange}
+        value={value || ``}
         name={this.props.name}
+        onChange={this.handleChange}
       />
     )
   }

@@ -10,7 +10,7 @@ export default class CollectionSelectField extends React.Component {
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     model: PropTypes.string,
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }
 
   handleChange = e => {
