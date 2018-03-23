@@ -89,6 +89,7 @@ export default class Input extends React.Component {
           choices={this.props.choices}
           defaultValue={this.props.defaultValue}
           includeBlank={this.props.includeBlank}
+          sortAlphabetically={this.props.sortAlphabetically}
           name={this.props.field}
         />
       )
@@ -124,6 +125,19 @@ export default class Input extends React.Component {
           name={this.props.field}
         />
       )
+    case `collection-checkboxes`:
+      return (
+        <CollectionCheckBoxes
+          collection={this.props.collection}
+          name_attribute={this.props.name_attribute}
+          value_attribute={this.props.value_attribute}
+          custom_attribute={this.props.custom_attribute}
+          onChange={handleChange}
+          createFunction={this.props.createFunction}
+          customLabel={this.props.customLabel}
+          value={value}
+        />
+      )
     default:
       return (
         <BasicInput
@@ -142,7 +156,7 @@ export default class Input extends React.Component {
     const value = this.props.value || this.record[field]
     const errors = this.record.errors.messagesFor(field)
     const onChange = this.handleChange
-    const fieldTitle = titleize(title ? title : field)
+    const fieldTitle = title ? title : titleize(field)
 
     if (render) return render(value, errors, this.handleChange)
 

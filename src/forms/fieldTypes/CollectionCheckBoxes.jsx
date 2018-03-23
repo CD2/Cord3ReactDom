@@ -36,7 +36,7 @@ export default class CollectionCheckBoxes extends React.Component {
   render() {
     if (!this.choices) return `LOADING...`
     return (
-      <div>
+      <div className="collection-checkboxes">
         {this.choices.map(choice => (
           <Checkbox
             value={this.values.includes(choice[0])}
