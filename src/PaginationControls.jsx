@@ -8,56 +8,15 @@ import { SelectField } from "./index"
 export default class PaginationControls extends React.Component {
   static propTypes = {
     collection: PropTypes.object,
+    page: PropTypes.number,
     perPage: PropTypes.number,
+   
   }
 
   static defaultProps = {
     perPage: 5,
     page: 1,
     onPageChange: () => {},
-  }
-
-  @observable totalRecords
-  @observable perPage
-  @observable currentPage = 1
-
-  get perPage() {
-    return this.props.perPage
-  }
-
-  @computed
-  get pageCount() {
-    return Math.ceil(this.totalRecords / this.props.perPage)
-  }
-
-  @computed
-  get offset() {
-    return this.props.perPage * (this.currentPage - 1)
-  }
-
-  @computed
-  get isFirstPage() {
-    return this.currentPage === 1
-  }
-
-  @computed
-  get isLastPage() {
-    return this.currentPage === this.pageCount
-  }
-
-  @action
-  handlePrevious = e => {
-    if (this.currentPage > 1) this.currentPage--
-  }
-
-  @action
-  handleNext = e => {
-    if (this.currentPage < this.pageCount) this.currentPage++
-  }
-
-  @action
-  gotoPage(n) {
-    this.currentPage = n
   }
 
   constructor(props) {
@@ -113,6 +72,50 @@ export default class PaginationControls extends React.Component {
       this.currentPage = props.page
     }
   }
+
+  @observable totalRecords
+  @observable perPage
+  @observable currentPage = 1
+
+  get perPage() {
+    return this.props.perPage
+  }
+
+  @computed
+  get pageCount() {
+    return Math.ceil(this.totalRecords / this.props.perPage)
+  }
+
+  @computed
+  get offset() {
+    return this.props.perPage * (this.currentPage - 1)
+  }
+
+  @computed
+  get isFirstPage() {
+    return this.currentPage === 1
+  }
+
+  @computed
+  get isLastPage() {
+    return this.currentPage === this.pageCount
+  }
+
+  @action
+  handlePrevious = e => {
+    if (this.currentPage > 1) this.currentPage--
+  }
+
+  @action
+  handleNext = e => {
+    if (this.currentPage < this.pageCount) this.currentPage++
+  }
+
+  @action
+  gotoPage(n) {
+    this.currentPage = n
+  }
+
 
   range(start, end) {
     return Array(end - start + 1).
@@ -172,7 +175,8 @@ export default class PaginationControls extends React.Component {
   renderPageNumbers = array => {
     const currentPage = this.currentPage
     return array.map(int => (
-      <a
+      <a 
+        key={int}
         className={`pagination__number${int === Number(currentPage) ? ` active` : ``}`}
         onClick={() => this.gotoPage(int)}
       >
@@ -192,8 +196,8 @@ export default class PaginationControls extends React.Component {
           <span>Goto:</span>
           <SelectField
             value={this.currentPage}
-            onChange={this.handleChange}
             choices={this.range(1, this.pageCount)}
+            onChange={this.handleChange}
           />
         </div>
       )
@@ -227,7 +231,7 @@ export default class PaginationControls extends React.Component {
             {this.pageNumberArray().
               filter(x => x.length > 1).
               map((handFeet, i) => (
-                <React.Fragment>
+                <React.Fragment key={i} >
                   {i !== 0 && `...`}
                   {this.renderPageNumbers(handFeet)}
                 </React.Fragment>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 export default class SelectField extends React.Component {
   static propTypes = {
-    choices: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.array])),
+    choices: PropTypes.array,
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     disabled: PropTypes.bool,
     includeBlank: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),

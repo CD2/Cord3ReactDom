@@ -11,7 +11,7 @@ export default class CollectionTagSelector extends React.Component {
     createFunction: PropTypes.func,
     name_attribute: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.array.isRequired,
+    value: PropTypes.object.isRequired,
     value_attribute: PropTypes.string.isRequired,
   }
 
