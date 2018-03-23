@@ -9,18 +9,20 @@ export default class FormFor extends React.Component {
   static DEFAULT_AUTOSAVE_TIME = 5000
 
   static propTypes = {
+    afterErrored: PropTypes.func,
     afterSubmit: PropTypes.func,
+    allowDangourousAutoSaveTime: PropTypes.bool,
+    autosave: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     children: PropTypes.node,
     record: PropTypes.object.isRequired,
-    autosave: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    allowDangourousAutoSaveTime: PropTypes.bool,
+    
+    
   }
 
   static defaultProps = {
     afterSubmit: () => {},
   }
 
-  @observable submitting = false
 
   componentDidMount() {
     const { record } = this.props
@@ -39,6 +41,8 @@ export default class FormFor extends React.Component {
   componentWillUnmount() {
     if (this.autosaveTimer) clearInterval(this.autosaveTimer)
   }
+  
+  @observable submitting = false
 
   get autosaveTime() {
     const { autosave, allowDangourousAutoSaveTime } = this.props

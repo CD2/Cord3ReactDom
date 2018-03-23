@@ -6,12 +6,13 @@ import { observable } from "mobx"
 @observer
 export class Checkbox extends React.Component {
   static propTypes = {
-    className: PropTypes.string,
+    className: PropTypes.string, 
+    customLabel: PropTypes.string,   
+    defaultValue: PropTypes.oneOfType([PropTypes.bool]),
     fieldTitle: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.func,
     onRawChange: PropTypes.func,
-    defaultValue: PropTypes.oneOfType([PropTypes.bool]),
     value: PropTypes.any,
   }
 
@@ -27,18 +28,18 @@ export class Checkbox extends React.Component {
   }
 
   render() {
-    const { className, fieldTitle, customLabel } = this.props
+    const { fieldTitle, customLabel } = this.props
     return (
       <label style={{ marginTop: `8px` }}>
         <input
           className="checkbox"
           checked={this.checked || this.props.defaultValue}
-          onChange={this.handleChange}
           type="checkbox"
           name={this.props.name}
+          onChange={this.handleChange}
         />
-        <div style={{ display: `inline-block`, width: '20px', verticalAlign: 'middle' }}><span className="check-box" /></div>
-        <span style={{ display: `inline-block`, verticalAlign: 'middle' }}>{customLabel || fieldTitle}</span>
+        <div style={{ display: `inline-block`, width: `20px`, verticalAlign: `middle` }}><span className="check-box" /></div>
+        <span style={{ display: `inline-block`, verticalAlign: `middle` }}>{customLabel || fieldTitle}</span>
       </label>
     )
   }
