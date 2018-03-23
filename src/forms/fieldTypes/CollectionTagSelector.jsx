@@ -9,6 +9,7 @@ export default class CollectionTagSelector extends React.Component {
   static propTypes = {
     collection: PropTypes.object.isRequired,
     createFunction: PropTypes.func,
+    name: PropTypes.string,
     name_attribute: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.object.isRequired,
@@ -76,7 +77,7 @@ export default class CollectionTagSelector extends React.Component {
     this.props.onChange(tagArr)
   }
 
-  handleCreate = () => {
+  onHandleCreate = () => {
     if (this.props.createFunction) {
       return (
         <span
@@ -98,10 +99,10 @@ export default class CollectionTagSelector extends React.Component {
         options={suggestions}
         values={this.initialValues}
         renderNoResults={() => <b>No Idea, create new? {this.inputValue}</b>}
-        createFunction={this.handleCreate}
-        onInputChange={this.handleValueChange}
-        onChange={this.handleChange}
+        createFunction={this.onHandleCreate}   
         name={this.props.name}
+        onChange={this.handleChange}
+        onInputChange={this.handleValueChange}
       />
     )
   }
