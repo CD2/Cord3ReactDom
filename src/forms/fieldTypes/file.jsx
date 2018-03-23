@@ -27,7 +27,7 @@ export default class FileField extends React.Component {
   }
 
   render() {
-    const { name, value, multiple, onFocus, onlySpreadsheets, className } = this.props
+    const { name, value, multiple, onFocus } = this.props
     if (!value.allowedTypes) throw new Error(`YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!`)
 
     return (

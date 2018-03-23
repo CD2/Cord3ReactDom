@@ -29,9 +29,9 @@ export default class DateInput extends React.Component {
       <input
         type="date"
         className="input"
-        value={value ? value.split('T')[0] : value}
-        onChange={this.handleChange}
+        value={value ? value.split(`T`)[0] : value}
         name={this.props.name}
+        onChange={this.handleChange}
       />
     )
   }

@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 const makeCancelable = promise => {
   let hasCanceled_ = false
@@ -19,11 +20,11 @@ const makeCancelable = promise => {
 }
 
 export default class Async extends React.Component {
-  state = {
-    loading: true,
-    loaded: false,
-    errored: false,
-    result: null,
+  static propTypes = {
+    catch: PropTypes.func,
+    loading: PropTypes.func,
+    promise: PropTypes.func,
+    then: PropTypes.func,
   }
 
   static defaultProps = {
@@ -37,7 +38,12 @@ export default class Async extends React.Component {
       return null
     },
   }
-
+  state = {
+    loading: true,
+    loaded: false,
+    errored: false,
+    result: null,
+  }
   componentDidMount() {
     this.prom = makeCancelable(this.props.promise)
     this.prom.promise.

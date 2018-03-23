@@ -2,9 +2,13 @@ import React from "react"
 import { observer } from "mobx-react"
 import { observable, reaction, computed } from "mobx"
 import invariant from "invariant"
+import PropTypes from "prop-types"
 
 @observer
 export default class ComponentWithRecord extends React.Component {
+  static propTypes ={
+    id: PropTypes.number,
+  }
   constructor(...args) {
     super(...args)
 
