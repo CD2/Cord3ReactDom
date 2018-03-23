@@ -18,16 +18,30 @@ import CollectionCheckBoxes from "./fieldTypes/CollectionCheckBoxes"
 export default class Input extends React.Component {
   static propTypes = {    
     characterCount: PropTypes.number, 
+    choices: PropTypes.array,
     className: PropTypes.string,
+    collection: PropTypes.object,
+    createFunction: PropTypes.func,
+    customLabel: PropTypes.string,
+    custom_attribute: PropTypes.string,
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
+    description: PropTypes.string,
     disabled: PropTypes.bool,
     field: PropTypes.string,
     form: PropTypes.object,
     fullEditor: PropTypes.any, 
+    includeBlank: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    name_attribute: PropTypes.string,
+    noLabel: PropTypes.bool,
     onChange: PropTypes.func,
     placeholder: PropTypes.any, 
     render: PropTypes.func,
+    sortAlphabetically: PropTypes.bool,
+    step: PropTypes.any,
     title: PropTypes.string,
+    type: PropTypes.string,
+    value: PropTypes.any,
+    value_attribute: PropTypes.string,
     
   }
 
@@ -146,7 +160,7 @@ export default class Input extends React.Component {
     default:
       return (
         <BasicInput
-          type={type || 'text'}
+          type={type || `text`}
           value={value}
           placeholder={placeholder}
           name={this.props.field} 

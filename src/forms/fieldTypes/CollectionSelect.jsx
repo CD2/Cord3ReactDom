@@ -8,21 +8,25 @@ import Select from "./Select"
 export default class CollectionSelectField extends React.Component {
   static propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    includeBlank: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     model: PropTypes.string,
     name: PropTypes.string,
+    onChange: PropTypes.func,
+    onRawChange: PropTypes.func,
+    sortAlphabetically: PropTypes.bool,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  }
-
-  handleChange = e => {
-    const { onRawChange, onChange } = this.props
-    if (onChange) onChange(e.target.value)
   }
 
   constructor(props) {
     super(props)
     this.getChoices()
   }
-
+  handleChange = e => {
+    const { onRawChange, onChange } = this.props
+    if (onChange) onChange(e.target.value)
+    if (onRawChange) onRawChange(e.target.value)
+  }
+  
   @observable choices
 
   async getChoices() {
@@ -45,10 +49,10 @@ export default class CollectionSelectField extends React.Component {
       <Select
         choices={toJS(this.choices)}
         value={value}
-        onChange={onChange}
         includeBlank={this.props.includeBlank}
         defaultValue={defaultValue}
-        name={name}
+        name={name} 
+        onChange={onChange}
       />
     )
   }

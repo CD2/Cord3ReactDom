@@ -12,7 +12,10 @@ export default class CollectionTagSelector extends React.Component {
     name: PropTypes.string,
     name_attribute: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.object.isRequired,
+    value: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
+    ]).isRequired,
     value_attribute: PropTypes.string.isRequired,
   }
 
