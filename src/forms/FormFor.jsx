@@ -15,14 +15,11 @@ export default class FormFor extends React.Component {
     autosave: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     children: PropTypes.node,
     record: PropTypes.object.isRequired,
-    
-    
   }
 
   static defaultProps = {
     afterSubmit: () => {},
   }
-
 
   componentDidMount() {
     const { record } = this.props
@@ -41,7 +38,7 @@ export default class FormFor extends React.Component {
   componentWillUnmount() {
     if (this.autosaveTimer) clearInterval(this.autosaveTimer)
   }
-  
+
   @observable submitting = false
 
   get autosaveTime() {

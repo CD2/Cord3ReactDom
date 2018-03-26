@@ -6,7 +6,7 @@ import BasicInput from "./BasicInput"
 
 @observer
 export default class CollectionSelectField extends React.Component {
-  static propTypes = {    
+  static propTypes = {
     blankAfterSelect: PropTypes.bool,
     className: PropTypes.string,
     collection: PropTypes.object,
@@ -19,7 +19,6 @@ export default class CollectionSelectField extends React.Component {
     value: PropTypes.string,
   }
 
-  
   constructor(props) {
     super(props)
     this.setupChoices()
@@ -53,7 +52,6 @@ export default class CollectionSelectField extends React.Component {
     this.props.onSelect && this.props.onSelect(val)
     this.props.blankAfterSelect ? (this.inputValue = ``) : (this.inputValue = val[1])
   }
-
 
   renderSuggestions() {
     if (!this.active) return null

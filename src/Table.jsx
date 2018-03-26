@@ -44,15 +44,11 @@ export default class CordCollection extends React.Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        Overwrite this render method
-      </React.Fragment>
-    )
+    return <React.Fragment>Overwrite this render method</React.Fragment>
   }
 }
 
-export class CordTable  extends CordCollection {
+export class CordTable extends CordCollection {
   render() {
     const { renderRow, renderHead } = this.props
     if (!this.loaded) return this.props.loadingContent || `LOADING...`
@@ -69,4 +65,3 @@ export class CordTable  extends CordCollection {
     )
   }
 }
-

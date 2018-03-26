@@ -157,11 +157,14 @@ export default class TagSelector extends React.Component {
             placeholder={this.props.placeholder || `Type for suggestions...`}
             value={this.inputValue}
             name={this.props.name}
-            onFocus={this.handleToggleFocus}            
+            onFocus={this.handleToggleFocus}
             onChange={this.handleChange}
-
           />
-          {this.isFocused && <div className="close-tag" onClick={this.handleToggleFocus} >X</div> }
+          {this.isFocused && (
+            <div className="close-tag" onClick={this.handleToggleFocus}>
+              X
+            </div>
+          )}
           {this.isFocused && this.renderSuggestions()}
         </div>
       </div>

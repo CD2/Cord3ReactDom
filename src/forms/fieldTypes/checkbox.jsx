@@ -6,8 +6,8 @@ import { observable } from "mobx"
 @observer
 export class Checkbox extends React.Component {
   static propTypes = {
-    className: PropTypes.string, 
-    customLabel: PropTypes.string,   
+    className: PropTypes.string,
+    customLabel: PropTypes.string,
     defaultValue: PropTypes.oneOfType([PropTypes.bool]),
     fieldTitle: PropTypes.string,
     name: PropTypes.string,
@@ -38,8 +38,12 @@ export class Checkbox extends React.Component {
           name={this.props.name}
           onChange={this.handleChange}
         />
-        <div style={{ display: `inline-block`, width: `20px`, verticalAlign: `middle` }}><span className="check-box" /></div>
-        <span style={{ display: `inline-block`, verticalAlign: `middle` }}>{customLabel || fieldTitle}</span>
+        <div style={{ display: `inline-block`, width: `20px`, verticalAlign: `middle` }}>
+          <span className="check-box" />
+        </div>
+        <span style={{ display: `inline-block`, verticalAlign: `middle` }}>
+          {customLabel || fieldTitle}
+        </span>
       </label>
     )
   }

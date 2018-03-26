@@ -12,10 +12,7 @@ export default class CollectionTagSelector extends React.Component {
     name: PropTypes.string,
     name_attribute: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object,
-    ]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     value_attribute: PropTypes.string.isRequired,
   }
 
@@ -102,7 +99,7 @@ export default class CollectionTagSelector extends React.Component {
         options={suggestions}
         values={this.initialValues}
         renderNoResults={() => <b>No Idea, create new? {this.inputValue}</b>}
-        createFunction={this.renderCreate}   
+        createFunction={this.renderCreate}
         name={this.props.name}
         onChange={this.handleChange}
         onInputChange={this.handleValueChange}

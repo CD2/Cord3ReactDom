@@ -16,8 +16,8 @@ import CollectionCheckBoxes from "./fieldTypes/CollectionCheckBoxes"
 @inject(`form`)
 @observer
 export default class Input extends React.Component {
-  static propTypes = {    
-    characterCount: PropTypes.number, 
+  static propTypes = {
+    characterCount: PropTypes.number,
     choices: PropTypes.array,
     className: PropTypes.string,
     collection: PropTypes.object,
@@ -29,12 +29,12 @@ export default class Input extends React.Component {
     disabled: PropTypes.bool,
     field: PropTypes.string,
     form: PropTypes.object,
-    fullEditor: PropTypes.any, 
+    fullEditor: PropTypes.any,
     includeBlank: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     name_attribute: PropTypes.string,
     noLabel: PropTypes.bool,
     onChange: PropTypes.func,
-    placeholder: PropTypes.any, 
+    placeholder: PropTypes.any,
     render: PropTypes.func,
     sortAlphabetically: PropTypes.bool,
     step: PropTypes.any,
@@ -42,7 +42,6 @@ export default class Input extends React.Component {
     type: PropTypes.string,
     value: PropTypes.any,
     value_attribute: PropTypes.string,
-    
   }
 
   constructor(props) {
@@ -71,11 +70,11 @@ export default class Input extends React.Component {
     const { placeholder } = this.props
     switch (type) {
     case `text-area`:
-      return <Textarea value={value}  name={this.props.field} onChange={handleChange} />
+      return <Textarea value={value} name={this.props.field} onChange={handleChange} />
     case `image`:
-      return <ImageField value={value}  name={this.props.field} onChange={handleChange} />
+      return <ImageField value={value} name={this.props.field} onChange={handleChange} />
     case `file`:
-      return <FileField value={value}  name={this.props.field} onChange={handleChange} />
+      return <FileField value={value} name={this.props.field} onChange={handleChange} />
     case `checkbox`:
       return (
         <Checkbox
@@ -120,7 +119,7 @@ export default class Input extends React.Component {
           value_attribute={this.props.value_attribute}
           createFunction={this.props.createFunction}
           value={value}
-          name={this.props.field} 
+          name={this.props.field}
           onChange={handleChange}
         />
       )
@@ -153,7 +152,7 @@ export default class Input extends React.Component {
           custom_attribute={this.props.custom_attribute}
           createFunction={this.props.createFunction}
           customLabel={this.props.customLabel}
-          value={value} 
+          value={value}
           onChange={handleChange}
         />
       )
@@ -163,7 +162,7 @@ export default class Input extends React.Component {
           type={type || `text`}
           value={value}
           placeholder={placeholder}
-          name={this.props.field} 
+          name={this.props.field}
           onChange={this.handleChange}
         />
       )

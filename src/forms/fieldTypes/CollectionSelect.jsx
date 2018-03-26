@@ -26,7 +26,7 @@ export default class CollectionSelectField extends React.Component {
     if (onChange) onChange(e.target.value)
     if (onRawChange) onRawChange(e.target.value)
   }
-  
+
   @observable choices
 
   async getChoices() {
@@ -35,8 +35,8 @@ export default class CollectionSelectField extends React.Component {
     this.choices = await collection.pluck(value_attribute, name_attribute)
     if (this.props.sortAlphabetically) {
       this.choices = this.choices.sort((a, b) => {
-        if(a[1] < b[1]) return -1
-        if(a[1] > b[1]) return 1
+        if (a[1] < b[1]) return -1
+        if (a[1] > b[1]) return 1
         return 0
       })
     }
@@ -51,7 +51,7 @@ export default class CollectionSelectField extends React.Component {
         value={value}
         includeBlank={this.props.includeBlank}
         defaultValue={defaultValue}
-        name={name} 
+        name={name}
         onChange={onChange}
       />
     )

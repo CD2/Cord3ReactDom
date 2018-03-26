@@ -7,14 +7,13 @@ import { SelectField } from "./index"
 @observer
 export default class PaginationControls extends React.Component {
   static propTypes = {
-    collection: PropTypes.object, 
+    collection: PropTypes.object,
     hideSelect: PropTypes.bool,
     noSummary: PropTypes.bool,
     onPageChange: PropTypes.func,
     page: PropTypes.number,
     perPage: PropTypes.number,
     showSelect: PropTypes.bool,
-    
   }
 
   static defaultProps = {
@@ -120,7 +119,6 @@ export default class PaginationControls extends React.Component {
     this.currentPage = n
   }
 
-
   range(start, end) {
     return Array(end - start + 1).
       fill().
@@ -179,7 +177,7 @@ export default class PaginationControls extends React.Component {
   renderPageNumbers = array => {
     const currentPage = this.currentPage
     return array.map(int => (
-      <a 
+      <a
         key={int}
         className={`pagination__number${int === Number(currentPage) ? ` active` : ``}`}
         onClick={() => this.gotoPage(int)}
@@ -235,7 +233,7 @@ export default class PaginationControls extends React.Component {
             {this.pageNumberArray().
               filter(x => x.length > 1).
               map((handFeet, i) => (
-                <React.Fragment key={i} >
+                <React.Fragment key={i}>
                   {i !== 0 && `...`}
                   {this.renderPageNumbers(handFeet)}
                 </React.Fragment>

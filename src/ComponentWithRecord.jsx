@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 
 @observer
 export default class ComponentWithRecord extends React.Component {
-  static propTypes ={
+  static propTypes = {
     id: PropTypes.number,
   }
   constructor(...args) {
@@ -26,7 +26,7 @@ export default class ComponentWithRecord extends React.Component {
 
   @computed
   get id() {
-    return  this._id || this.props.id
+    return this._id || this.props.id
   }
 
   set id(val) {

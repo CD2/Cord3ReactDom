@@ -40,7 +40,7 @@ export default class CollectionCheckBoxes extends React.Component {
     if (!this.choices) return `LOADING...`
     return (
       <div className="collection-checkboxes">
-        {this.choices.map((choice,index) => (
+        {this.choices.map((choice, index) => (
           <Checkbox
             key={index}
             value={this.values.includes(choice[0])}
