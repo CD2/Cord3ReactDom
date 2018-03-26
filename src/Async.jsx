@@ -1,5 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { observer } from "mobx-react"
+import { observable } from "mobx"
 
 const makeCancelable = promise => {
   let hasCanceled_ = false
@@ -19,6 +21,7 @@ const makeCancelable = promise => {
   }
 }
 
+@observer
 export default class Async extends React.Component {
   static propTypes = {
     catch: PropTypes.func,
@@ -38,7 +41,7 @@ export default class Async extends React.Component {
       return null
     },
   }
-  state = {
+  @observable state = {
     loading: true,
     loaded: false,
     errored: false,
@@ -47,8 +50,8 @@ export default class Async extends React.Component {
   componentDidMount() {
     this.prom = makeCancelable(this.props.promise)
     this.prom.promise.
-      then(result => this.setState({ result, loading: false, loaded: true })).
-      catch(error => this.setState({ errored: true, loading: false, result: error }))
+      then(result => this.state({ result, loading: false, loaded: true })).
+      catch(error => this.state({ errored: true, loading: false, result: error }))
   }
   componentWillUnmount() {
     this.prom.promise.catch(e => console.error(e))

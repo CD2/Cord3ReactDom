@@ -28,45 +28,48 @@ export default class PaginationControls extends React.Component {
     const { collection } = this.props
     this.currentPage = this.props.page
 
-    collection.count().then(count => (this.totalRecords = count))
+    if(collection){
+      collection.count().then(count => (this.totalRecords = count))
 
-    reaction(
-      () => this.props.perPage,
-      perPage => {
-        collection.limit(perPage)
-      },
-      true,
-    )
+      reaction(
+        () => this.props.perPage,
+        perPage => {
+          collection.limit(perPage)
+        },
+        true,
+      )
 
-    reaction(
-      () => this.offset,
-      offset => {
-        this.props.collection.offset(offset)
-      },
-      true,
-    )
+      reaction(
+        () => this.offset,
+        offset => {
+          collection.offset(offset)
+        },
+        true,
+      )
 
-    let { _query, _sort, _scope } = collection
+      let { _query, _sort, _scope } = collection
 
-    collection.onChange(async () => {
-      const coll = collection.dup()
-      coll.unlimit()
-      coll.unoffset()
-      this.totalRecords = await coll.count()
+      collection.onChange(async () => {
+        const coll = collection.dup()
+        coll.unlimit()
+        coll.unoffset()
+        this.totalRecords = await coll.count()
 
-      if (
-        _query !== collection._query ||
-        _sort !== collection._sort ||
-        _scope !== collection._scope
-      ) {
-        if (this.currentPage > 1) this.currentPage = 1
-        _query = collection._query
-        _sort = collection._sort
-        _scope = collection._scope
-      }
-    })
+        if (
+          _query !== collection._query ||
+          _sort !== collection._sort ||
+          _scope !== collection._scope
+        ) {
+          if (this.currentPage > 1) this.currentPage = 1
+          _query = collection._query
+          _sort = collection._sort
+          _scope = collection._scope
+        }
+      })
 
-    reaction(() => this.currentPage, page => this.props.onPageChange(page))
+      reaction(() => this.currentPage, page => this.props.onPageChange(page))
+    }
+    
   }
 
   @action
@@ -207,6 +210,7 @@ export default class PaginationControls extends React.Component {
   }
 
   render() {
+    if(!this.props.collection) return null
     if (!this.totalRecords) return null
 
     const prevButton = this.firstPage ? (

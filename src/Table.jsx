@@ -11,8 +11,8 @@ export default class CordCollection extends React.Component {
 
   componentWillMount() {
     const { collection } = this.props
-    this.cleanup = collection.onChange(this.handleCollectionChange)
-    this.recordsPromise = collection.toArray()
+    this.cleanup = collection && collection.onChange(this.handleCollectionChange)
+    this.recordsPromise = collection && collection.toArray()
 
     reaction(
       () => this.recordsPromise,
@@ -29,7 +29,7 @@ export default class CordCollection extends React.Component {
   }
 
   componentWillUnmount() {
-    this.cleanup()
+    this.cleanup && this.cleanup()
   }
 
   @observable recordsPromise
@@ -51,7 +51,7 @@ export default class CordCollection extends React.Component {
 export class CordTable extends CordCollection {
   render() {
     const { renderRow, renderHead } = this.props
-    if (!this.loaded) return this.props.loadingContent || `LOADING...`
+    if (!this.loaded || !this.records) return this.props.loadingContent || `LOADING...`
     if (this.records.length === 0) {
       return <div className={`${this.props.className} no-results`}>No entries</div>
     }
