@@ -11,7 +11,10 @@ export default class PaginationControls extends React.Component {
     hideSelect: PropTypes.bool,
     noSummary: PropTypes.bool,
     onPageChange: PropTypes.func,
-    page: PropTypes.number,
+    page: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     perPage: PropTypes.number,
     showSelect: PropTypes.bool,
   }

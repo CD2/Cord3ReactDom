@@ -7,12 +7,12 @@ import Checkbox from "./checkbox"
 @observer
 export default class CollectionCheckBoxes extends React.Component {
   static propTypes = {
-    collection: PropTypes.func,
+    collection: PropTypes.object,
     customLabel: PropTypes.func,
     name_attribute: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.any,
-    value_attribute: PropTypes.array,
+    value_attribute: PropTypes.string,
   }
 
   async componentDidMount() {
@@ -42,7 +42,7 @@ export default class CollectionCheckBoxes extends React.Component {
       <div className="collection-checkboxes">
         {this.choices.map((choice, index) => (
           <Checkbox
-            key={index}
+            key={index+Math.random()}
             value={this.values.includes(choice[0])}
             fieldTitle={choice[1]}
             customLabel={this.props.customLabel(choice)}

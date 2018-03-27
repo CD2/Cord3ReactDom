@@ -7,7 +7,7 @@ import { observable } from "mobx"
 export class Checkbox extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    customLabel: PropTypes.string,
+    customLabel: PropTypes.object,
     defaultValue: PropTypes.oneOfType([PropTypes.bool]),
     fieldTitle: PropTypes.string,
     name: PropTypes.string,

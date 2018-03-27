@@ -22,7 +22,7 @@ export default class Input extends React.Component {
     className: PropTypes.string,
     collection: PropTypes.object,
     createFunction: PropTypes.func,
-    customLabel: PropTypes.string,
+    customLabel: PropTypes.func,
     custom_attribute: PropTypes.string,
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
     description: PropTypes.string,
