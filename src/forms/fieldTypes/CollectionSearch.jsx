@@ -75,7 +75,14 @@ export default class CollectionSelectField extends React.Component {
 
   render() {
     const { className } = this.props
-    if (!this.loaded) return `LOADING!`
+    if (!this.loaded) {
+      return (
+        <BasicInput
+          placeholder="Loading..."
+          disabled
+        />
+      )
+    }
     return (
       <div className={className}>
         <BasicInput

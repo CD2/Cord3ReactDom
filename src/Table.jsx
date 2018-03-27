@@ -51,7 +51,7 @@ export default class CordCollection extends React.Component {
 export class CordTable extends CordCollection {
   render() {
     const { renderRow, renderHead } = this.props
-    if (!this.loaded || !this.records) return this.props.loadingContent || `LOADING...`
+    if (!this.loaded || !this.records) return this.props.loadingContent || `Loading...`
     if (this.records.length === 0) {
       return <div className={`${this.props.className} no-results`}>No entries</div>
     }
