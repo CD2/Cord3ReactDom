@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 export default class SelectField extends React.Component {
   static propTypes = {
     choices: PropTypes.array,
+    dataName: PropTypes.string,
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     disabled: PropTypes.bool,
     includeBlank: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -83,7 +84,7 @@ export default class SelectField extends React.Component {
   }
 
   render() {
-    const { name, value, disabled } = this.props
+    const { name, value, disabled, dataName } = this.props
     return (
       <div className="select">
         <select
@@ -92,6 +93,7 @@ export default class SelectField extends React.Component {
           disabled={disabled}
           className={`select-input ${name}`}
           onChange={this.handleChange}
+          data-name={dataName}
         >
           {this.renderChoices()}
         </select>
