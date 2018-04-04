@@ -92,8 +92,8 @@ export default class SelectField extends React.Component {
           value={value || ``}
           disabled={disabled}
           className={`select-input ${name}`}
-          onChange={this.handleChange}
           data-name={dataName}
+          onChange={this.handleChange}
         >
           {this.renderChoices()}
         </select>
