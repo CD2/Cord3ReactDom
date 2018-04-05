@@ -1,14 +1,4 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "react-app",
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier"
-  ],
-  "plugins": [
-    "prettier"
-  ],
   "rules": {
     "no-constant-condition": 1,
     "no-unreachable": [

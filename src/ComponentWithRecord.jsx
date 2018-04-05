@@ -40,7 +40,7 @@ export default class ComponentWithRecord extends React.Component {
   }
 
   renderLoading() {
-    return `Loading...`
+    return `...`
   }
 
   @observable record

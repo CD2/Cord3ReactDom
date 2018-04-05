@@ -32,7 +32,7 @@ export default class CollectionTagSelector extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.cleanup = reaction(
       () => this.suggestionPromise,
       prom => {

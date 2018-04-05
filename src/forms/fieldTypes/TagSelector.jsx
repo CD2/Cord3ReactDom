@@ -22,7 +22,7 @@ export default class TagSelector extends React.Component {
     inputValue: ``,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.inputValue = this.props.inputValue || ``
     reaction(
       () => this.inputValue,

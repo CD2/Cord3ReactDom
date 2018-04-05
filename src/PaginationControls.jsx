@@ -37,7 +37,7 @@ export default class PaginationControls extends React.Component {
       reaction(
         () => this.props.perPage,
         perPage => {
-          collection.limit(perPage)
+          if(perPage) collection.limit(perPage)
         },
         true,
       )

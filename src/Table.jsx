@@ -9,7 +9,7 @@ export default class CordCollection extends React.Component {
     collection: PropTypes.object,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { collection } = this.props
     this.cleanup = collection && collection.onChange(this.handleCollectionChange)
     this.recordsPromise = collection && collection.toArray()

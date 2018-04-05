@@ -17,7 +17,7 @@ export default class Submit extends React.Component {
     submittingTime: 500,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { submittingTime, form } = this.props
     reaction(
       () => form.submitting,
