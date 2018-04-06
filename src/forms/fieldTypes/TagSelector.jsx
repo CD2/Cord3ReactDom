@@ -84,7 +84,7 @@ export default class TagSelector extends React.Component {
   renderSelected() {
     if (this.selected.length === 0) return null
     return (
-      <div>
+      <div className="selected-items">
         {this.selected.map(sel => (
           <span
             key={sel}
@@ -148,6 +148,7 @@ export default class TagSelector extends React.Component {
         {this.renderSelected()}
         {this.isFocused && this.renderUnderlay()}
         <div
+          className="suggestions-container"
           style={{
             position: `relative`,
             zIndex: 101,
