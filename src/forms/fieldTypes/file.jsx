@@ -31,7 +31,7 @@ export default class FileField extends React.Component {
     if (!value.allowedTypes) throw new Error(`YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!`)
 
     return (
-      <div className="file">
+      <div className="file" style={{ marginTop: `4px` }}>
         <input
           type="file"
           name={name}
