@@ -9,6 +9,7 @@ export default class FileField extends React.Component {
     model: PropTypes.object,
     multiple: PropTypes.bool,
     name: PropTypes.string,
+    noAccept: PropTypes.bool,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     onRawChange: PropTypes.func,
@@ -27,7 +28,7 @@ export default class FileField extends React.Component {
   }
 
   render() {
-    const { name, value, multiple, onFocus } = this.props
+    const { name, value, multiple, onFocus, noAccept } = this.props
     if (!value.allowedTypes) throw new Error(`YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!`)
 
     return (
@@ -36,7 +37,7 @@ export default class FileField extends React.Component {
           type="file"
           name={name}
           multiple={multiple}
-          accept={value.allowedTypes.map(x => `.${x}`).join(`,`)}
+          accept={noAccept ? [] : value.allowedTypes.map(x => `.${x}`).join(`,`)}
           onChange={this.handleChange}
           onFocus={onFocus}
         />

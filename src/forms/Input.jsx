@@ -74,7 +74,7 @@ export default class Input extends React.Component {
     case `image`:
       return <ImageField value={value} name={this.props.field} onChange={handleChange} />
     case `file`:
-      return <FileField value={value} name={this.props.field} onChange={handleChange} />
+      return <FileField value={value} name={this.props.field} onChange={handleChange} noAccept={this.props.noAccept} />
     case `checkbox`:
       return (
         <Checkbox
