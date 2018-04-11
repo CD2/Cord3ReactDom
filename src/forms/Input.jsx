@@ -67,7 +67,7 @@ export default class Input extends React.Component {
   }
 
   renderInput(type, value, handleChange, fieldTitle) {
-    const { placeholder } = this.props
+    const { placeholder,disabled } = this.props
     switch (type) {
     case `text-area`:
       return <Textarea value={value} name={this.props.field} onChange={handleChange} />
@@ -128,6 +128,7 @@ export default class Input extends React.Component {
         <BasicInput
           type={type}
           value={value}
+          disabled={disabled}
           step={this.props.step}
           placeholder={placeholder}
           name={this.props.field}
@@ -159,6 +160,7 @@ export default class Input extends React.Component {
     default:
       return (
         <BasicInput
+          disabled={disabled}
           type={type || `text`}
           value={value}
           placeholder={placeholder}

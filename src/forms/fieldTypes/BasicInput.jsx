@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 
 export default class BasicInput extends React.Component {
   static propTypes = {
+    disabled: PropTypes.bool,
     initialValue: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.func,
@@ -24,13 +25,14 @@ export default class BasicInput extends React.Component {
   }
 
   render() {
-    const { onChange, value, ...otherProps } = this.props
+    const { onChange, disabled, value, ...otherProps } = this.props
     return (
       <input
         className="input"
         {...otherProps}
         value={value || ``}
         name={this.props.name}
+        disabled={disabled || false}
         onChange={this.handleChange}
       />
     )
