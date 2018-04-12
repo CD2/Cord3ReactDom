@@ -58,7 +58,7 @@ export default class PasswordInput extends React.Component {
     Object.entries(this.helpers).map(([key, value]) => {
       errors.push({ [key]: value(password) })
     })
-    if((password && password.length < 8) && (password && password2.length < 8)) errors.push({ "Password and Confirmation password must match.": false })
+    if((!password || password.length < 8) && (password2 || password2.length < 8)) errors.push({ "Password and Confirmation password must match.": false })
     else errors.push({ "Password and Confirmation password must match.": password === password2 })
     this.errors.replace(errors)
     this.validate()
