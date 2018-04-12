@@ -17,6 +17,7 @@ export default class PaginationControls extends React.Component {
     ]),
     perPage: PropTypes.number,
     showSelect: PropTypes.bool,
+    style: PropTypes.object,
   }
 
   static defaultProps = {
@@ -233,7 +234,7 @@ export default class PaginationControls extends React.Component {
     )
 
     return (
-      <div className="pagination__wrapper">
+      <div className="pagination__wrapper" style={this.props.style}>
         {this.pageCount > 1 && (
           <div className="pagination">
             {prevButton}
