@@ -5,6 +5,7 @@ import { observer } from "mobx-react"
 import { observable, reaction, action, computed } from "mobx"
 import Wrapper from "lib/components/wrapper"
 import List from 'lib/components/list'
+
 @styled`
   position: relative;
   text-align: right;
@@ -22,7 +23,7 @@ import List from 'lib/components/list'
       list-style: none;   
     }   
     .error {
-      color: ${t(`lightText`)}
+      color: ${t(`delete`)}
     }
     .complete {
       color: ${t(`primary`)}
@@ -65,7 +66,8 @@ export default class PasswordInput extends React.Component {
     Object.entries(this.helpers).map(([key, value]) => {
       errors.push({ [key]: value(password) })
     })
-    if(password.length > 1) errors.push({ "Password and Confirmation password must match.": password === password2 })
+    if(password.length < 8 && password2.length < 8) errors.push({ "Password and Confirmation password must match.": false })
+    else errors.push({ "Password and Confirmation password must match.": password === password2 })
     this.errors.replace(errors)
     this.validate()
   }
@@ -93,7 +95,13 @@ export default class PasswordInput extends React.Component {
         <List spacing={2}>
           {this.errors.map(error=>(
             Object.entries(error).map(([error, active])=>(
-              <List.Item style={{ display: `block`, flex: `1` }} className={`${active ? `complete` : `error`}`}>{error} {active ? `complete` : `error`}</List.Item>
+              <List.Item 
+                key={error}
+                style={{ display: `block`, flex: `1` }} 
+                className={`${active ? `complete` : `error`}`}
+              >
+                {error}
+              </List.Item>
             ))
           ))}
         </List>
@@ -103,7 +111,7 @@ export default class PasswordInput extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={this.props.className}>
         <input
           className="input"
           type="password"
