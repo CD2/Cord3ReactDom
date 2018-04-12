@@ -8,20 +8,12 @@ import List from 'lib/components/list'
 
 @styled`
   position: relative;
-  text-align: right;
-  .field {
-    margin-bottom: 10px;
-  }
   .password_helpers {
+    width: 100%;
     display: inline-block;
     font-size: 0.9em;
     text-align: left;
     font-weight: 600;
-    ul{
-      padding: 0;
-      margin: 0;
-      list-style: none;   
-    }   
     .error {
       color: ${t(`delete`)}
     }
@@ -66,7 +58,7 @@ export default class PasswordInput extends React.Component {
     Object.entries(this.helpers).map(([key, value]) => {
       errors.push({ [key]: value(password) })
     })
-    if(password.length < 8 && password2.length < 8) errors.push({ "Password and Confirmation password must match.": false })
+    if((password && password.length < 8) && (password && password2.length < 8)) errors.push({ "Password and Confirmation password must match.": false })
     else errors.push({ "Password and Confirmation password must match.": password === password2 })
     this.errors.replace(errors)
     this.validate()
@@ -112,15 +104,17 @@ export default class PasswordInput extends React.Component {
   render() {
     return (
       <div className={this.props.className}>
-        <input
-          className="input"
-          type="password"
-          name="password"
-          value={this.passwordValue}
-          placeholder={this.props.placeholder || `Password`}
-          onChange={this.handlePasswordChange}
-        />
-        <div>
+        <div style={{ padding: `2px` }}>
+          <input
+            className="input"
+            type="password"
+            name="password"
+            value={this.passwordValue}
+            placeholder={this.props.placeholder || `Password`}
+            onChange={this.handlePasswordChange}
+          />
+        </div>
+        <div style={{ padding: `2px` }}>
           <input
             className="input"
             type="password"
@@ -130,7 +124,7 @@ export default class PasswordInput extends React.Component {
             onChange={this.handlePassConfirmationChange}
           />
         </div>
-        {this.renderHelpers}
+        <div style={{ padding: `2px` }}>{this.renderHelpers}</div>
       </div>
     )
   }
