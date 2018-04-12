@@ -47,6 +47,10 @@ export default class PasswordInput extends React.Component {
   
   @observable errors = []
 
+  componentDidMount(){
+    this.matchPassword(``, ``)
+  }
+
   handlePasswordChange = (e) => {
     this.passwordValue = e.target.value
     this.matchPassword(this.passwordValue, this.confirmationPassword)
@@ -61,7 +65,7 @@ export default class PasswordInput extends React.Component {
     Object.entries(this.helpers).map(([key, value]) => {
       errors.push({ [key]: value(password) })
     })
-    errors.push({ "Password and Confirmation password must match.": password === password2 })
+    if(password.length > 1) errors.push({ "Password and Confirmation password must match.": password === password2 })
     this.errors.replace(errors)
     this.validate()
   }
@@ -72,6 +76,7 @@ export default class PasswordInput extends React.Component {
       if (!Object.values(error)[0]) isValid = false
     })
     this.props.valid(isValid)
+    this.props.password(this.passwordValue)
   }
 
   helpers = {
@@ -80,42 +85,6 @@ export default class PasswordInput extends React.Component {
     "Contains an uppercase letter": value => /[A-Z]/.test(value),
     "Contains a number": value => /[0-9]/.test(value),
   }
-
-  // getErrorMessages() {
-  //   const display_name = `Password`
-  //   return this.getErrors().map((error, i) => {
-  //     return (
-  //       <div key={i} className="field__error-message">
-  //         {` `}
-  //         {display_name} {error}
-  //       </div>
-  //     )
-  //   })
-  // }
-
-  getConfirmationErrorMessages() {
-    return this.getConfirmationErrors().map((error, i) => {
-      return (
-        <div key={i} className="field__error-message">
-          Password Confirmation {error}
-        </div>
-      )
-    })
-  }
-
-  // renderHelp(text, tester) {
-  //   let className = ``
-  //   if (tester(this.getValue())) {
-  //     className += `complete`
-  //   } else if (this.helper_errors) {
-  //     className += `error`
-  //   }
-  //   return (
-  //     <li key={text} className={className}>
-  //       {text}
-  //     </li>
-  //   )
-  // }
 
   @computed
   get renderHelpers() {
