@@ -83,7 +83,7 @@ export default class PasswordInput extends React.Component {
   @computed
   get renderHelpers() {
     return (
-      <Wrapper className="password_helpers" background={`#f5f5f5`}>
+      <Wrapper className="password_helpers" background={`#f5f5f5`} borderRadius={5}>
         <List spacing={2}>
           {this.errors.map(error=>(
             Object.entries(error).map(([error, active])=>(
