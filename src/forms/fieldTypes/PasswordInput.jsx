@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react"
+import PropTypes from "prop-types"
 import { styled, t } from "lib/utils/theme"
 import { observer } from "mobx-react"
 import { observable, reaction, action, computed } from "mobx"
 import Wrapper from "lib/components/wrapper"
-import List from 'lib/components/list'
+import List from "lib/components/list"
 
 @styled`
   position: relative;
@@ -35,41 +35,38 @@ export default class PasswordInput extends React.Component {
     type: PropTypes.string,
   }
 
-  @observable confirmationPassword
-  @observable passwordValue
-  
+  @observable confirmationPassword = ""
+  @observable passwordValue = ""
+
   @observable errors = []
 
-  componentDidMount(){
+  componentDidMount() {
     this.matchPassword(``, ``)
   }
 
-  handlePasswordChange = (e) => {
+  @action
+  handlePasswordChange = e => {
     this.passwordValue = e.target.value
-    this.matchPassword(this.passwordValue, this.confirmationPassword)
-  }
-  handlePassConfirmationChange = (e) => {
-    this.confirmationPassword = e.target.value
-    this.matchPassword(this.passwordValue, this.confirmationPassword)
+    this.matchPassword()
   }
 
-  matchPassword(password, password2){
+  @action
+  handlePassConfirmationChange = e => {
+    this.confirmationPassword = e.target.value
+    this.matchPassword()
+  }
+
+  matchPassword() {
+    const password = this.passwordValue
+    const password2 = this.confirmationPassword
     let errors = []
     Object.entries(this.helpers).map(([key, value]) => {
       errors.push({ [key]: value(password) })
     })
-    if((!password || password.length < 8) && (password2 || password2.length < 8)) errors.push({ "Password and Confirmation password must match.": false })
+    if ((!password || password.length < 8) && (password2 || password2.length < 8))
+      errors.push({ "Password and Confirmation password must match.": false })
     else errors.push({ "Password and Confirmation password must match.": password === password2 })
     this.errors.replace(errors)
-    this.validate()
-  }
-
-  validate = () => {
-    let isValid = true
-    this.errors.map(error=>{
-      if (!Object.values(error)[0]) isValid = false
-    })
-    this.props.valid(isValid)
     this.props.password(this.passwordValue)
   }
 
@@ -85,17 +82,17 @@ export default class PasswordInput extends React.Component {
     return (
       <Wrapper className="password_helpers" background={`#f5f5f5`} borderRadius={5}>
         <List spacing={2}>
-          {this.errors.map(error=>(
-            Object.entries(error).map(([error, active])=>(
-              <List.Item 
+          {this.errors.map(error =>
+            Object.entries(error).map(([error, active]) => (
+              <List.Item
                 key={error}
-                style={{ display: `block`, flex: `1` }} 
+                style={{ display: `block`, flex: `1` }}
                 className={`${active ? `complete` : `error`}`}
               >
                 {error}
               </List.Item>
-            ))
-          ))}
+            )),
+          )}
         </List>
       </Wrapper>
     )
