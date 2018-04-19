@@ -31,6 +31,7 @@ export default class Input extends React.Component {
     form: PropTypes.object,
     fullEditor: PropTypes.any,
     includeBlank: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    label: PropTypes.string,
     name_attribute: PropTypes.string,
     noLabel: PropTypes.bool,
     onChange: PropTypes.func,
@@ -72,7 +73,7 @@ export default class Input extends React.Component {
     case `text-area`:
       return <Textarea value={value} name={this.props.field} onChange={handleChange} />
     case `image`:
-      return <ImageField value={value} name={this.props.field} onChange={handleChange} />
+      return <ImageField value={value} name={this.props.label || this.props.field} onChange={handleChange} />
     case `file`:
       return <FileField value={value} name={this.props.field} onChange={handleChange} noAccept={this.props.noAccept} />
     case `checkbox`:
@@ -164,7 +165,7 @@ export default class Input extends React.Component {
           type={type || `text`}
           value={value}
           placeholder={placeholder}
-          name={this.props.field}
+          name={this.props.label || this.props.field}
           onChange={this.handleChange}
         />
       )
