@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { observer } from "mobx-react"
+import File from "lib/components/file"
 
 @observer
 export default class FileField extends React.Component {
@@ -30,9 +31,17 @@ export default class FileField extends React.Component {
   render() {
     const { name, value, multiple, onFocus, noAccept } = this.props
     if (!value.allowedTypes) throw new Error(`YOU MUST SET DEFAULT TYPES IN THE MODEL!!!!!!!!`)
-
     return (
       <div className="file" style={{ marginTop: `4px` }}>
+        {value.rawUid && (
+          <React.Fragment>
+            <File uid={value.rawUid} linkOnly onClick={e => e.stopPropagation()}>
+              {value.filename}
+            </File>
+            <br />
+          </React.Fragment>
+        )}
+
         <input
           type="file"
           name={name}
