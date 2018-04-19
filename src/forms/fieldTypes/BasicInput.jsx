@@ -19,9 +19,19 @@ export default class BasicInput extends React.Component {
     value: ``,
   }
 
+  handleChangeValueType(e){
+    const { onChange } = this.props
+    if(this.props.type === 'checkbox'){
+      onChange(e.target.checked)
+    } else {
+      onChange(e.target.value)
+    }
+
+  }
+
   handleChange = e => {
     const { onChange } = this.props
-    if (onChange) onChange(e.target.value)
+    if (onChange) this.handleChangeValueType(e)
   }
 
   render() {
