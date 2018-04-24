@@ -68,14 +68,27 @@ export default class Input extends React.Component {
   }
 
   renderInput(type, value, handleChange, fieldTitle) {
-    const { placeholder,disabled } = this.props
+    const { placeholder, disabled } = this.props
     switch (type) {
     case `text-area`:
       return <Textarea value={value} name={this.props.field} onChange={handleChange} />
     case `image`:
-      return <ImageField value={value} name={this.props.label || this.props.field} onChange={handleChange} />
+      return (
+        <ImageField
+          value={value}
+          name={this.props.label || this.props.field}
+          onChange={handleChange}
+        />
+      )
     case `file`:
-      return <FileField value={value} name={this.props.field} onChange={handleChange} noAccept={this.props.noAccept} />
+      return (
+        <FileField
+          value={value}
+          name={this.props.field}
+          onChange={handleChange}
+          noAccept={this.props.noAccept}
+        />
+      )
     case `checkbox`:
       return (
         <Checkbox

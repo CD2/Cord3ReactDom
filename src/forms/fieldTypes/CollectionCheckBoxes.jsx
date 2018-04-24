@@ -42,7 +42,7 @@ export default class CollectionCheckBoxes extends React.Component {
       <div className="collection-checkboxes">
         {this.choices.map((choice, index) => (
           <Checkbox
-            key={index+Math.random()}
+            key={index + Math.random()}
             value={this.values.includes(choice[0])}
             fieldTitle={choice[1]}
             customLabel={this.props.customLabel(choice)}

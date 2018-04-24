@@ -41,7 +41,8 @@ export default class Async extends React.Component {
       return null
     },
   }
-  @observable state = {
+  @observable
+  state = {
     loading: true,
     loaded: false,
     errored: false,

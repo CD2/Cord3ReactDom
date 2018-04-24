@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { observable } from "mobx"
+import { observable, reaction, computed } from "mobx"
 import { observer } from "mobx-react"
 import BasicInput from "./BasicInput"
 
@@ -24,6 +24,15 @@ export default class CollectionSelectField extends React.Component {
     this.setupChoices()
   }
 
+  componentDidMount() {
+    reaction(
+      () => this.inputValue,
+      val => {
+        this.filterList(val)
+      },
+    )
+  }
+
   componentWillReceiveProps(props) {
     if (this.props.initialValue !== props.initialValue) this.inputValue = props.initialValue
   }
@@ -37,6 +46,18 @@ export default class CollectionSelectField extends React.Component {
   @observable inputValue = this.props.initialValue
   @observable loaded = false
   @observable active = false
+  @observable choices = this.choices
+  @observable filteredChoices = []
+
+  filterList() {
+    if (this.inputValue && this.inputValue.length > 0) {
+      this.filteredChoices = this.choices.filter(
+        choice => choice[1].toLowerCase().indexOf(this.inputValue.toLowerCase()) > -1,
+      )
+    } else {
+      this.filteredChoices = this.choices
+    }
+  }
 
   handleChange = val => {
     this.inputValue = val
@@ -56,8 +77,8 @@ export default class CollectionSelectField extends React.Component {
   renderSuggestions() {
     if (!this.active) return null
     return (
-      <div className="suggestions">
-        {this.choices.map(choice => (
+      <div className="suggestions" style={{ position: "relative", zIndex: 10000 }}>
+        {this.filteredChoices.map(choice => (
           <span
             key={choice}
             className="suggestions__item"
@@ -74,17 +95,23 @@ export default class CollectionSelectField extends React.Component {
   }
 
   render() {
-    const { className } = this.props
+    const { className, noOptionsFunction } = this.props
     if (!this.loaded) {
-      return (
-        <BasicInput
-          placeholder="Loading..."
-          disabled
-        />
-      )
+      return <BasicInput placeholder="Loading..." disabled />
     }
     return (
-      <div className={className}>
+      <div
+        className={className}
+        onKeyPress={e => {
+          if (e.which === 13 || e.keyCode === 13) {
+            if (this.filteredChoices.length === 0 && noOptionsFunction) {
+              noOptionsFunction()
+            } else {
+              this.chooseValue(this.filteredChoices[0])
+            }
+          }
+        }}
+      >
         <BasicInput
           placeholder={this.props.placeholder || `Type for suggestions...`}
           value={this.inputValue || ``}
@@ -92,7 +119,7 @@ export default class CollectionSelectField extends React.Component {
           onFocus={this.handleFocusInput}
           onBlur={this.handleUnFocusInput}
         />
-        {this.renderSuggestions()}
+        {this.filteredChoices.length > 0 && this.renderSuggestions()}
       </div>
     )
   }

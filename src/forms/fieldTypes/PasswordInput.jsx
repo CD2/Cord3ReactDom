@@ -35,8 +35,8 @@ export default class PasswordInput extends React.Component {
     type: PropTypes.string,
   }
 
-  @observable confirmationPassword = ""
-  @observable passwordValue = ""
+  @observable confirmationPassword = ``
+  @observable passwordValue = ``
 
   @observable errors = []
 
@@ -64,7 +64,7 @@ export default class PasswordInput extends React.Component {
       errors.push({ [key]: value(password) })
     })
     if ((!password || password.length < 8) && (password2 || password2.length < 8))
-      errors.push({ "Password and Confirmation password must match.": false })
+    {errors.push({ "Password and Confirmation password must match.": false })}
     else errors.push({ "Password and Confirmation password must match.": password === password2 })
     this.errors.replace(errors)
     this.props.password(this.passwordValue)

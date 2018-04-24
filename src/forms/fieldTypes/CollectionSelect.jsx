@@ -44,13 +44,8 @@ export default class CollectionSelectField extends React.Component {
 
   render() {
     const { onChange, value, defaultValue, name } = this.props
-    if(!this.choices) {
-      return (
-        <Select
-          choices={[]}
-          includeBlank="Loading..."
-        />
-      )
+    if (!this.choices) {
+      return <Select choices={[]} includeBlank="Loading..." />
     }
     return (
       <Select

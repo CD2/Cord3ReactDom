@@ -33,8 +33,13 @@ export default class Submit extends React.Component {
   @observable submittingTimeout = false
 
   render() {
-    const { text, submittingText, form: { record, submitting }} = this.props
-    const defaultText = (record.newRecord ? `Create ` : `Update `) + record.class.displayName || record.class.name 
+    const {
+      text,
+      submittingText,
+      form: { record, submitting },
+    } = this.props
+    const defaultText =
+      (record.newRecord ? `Create ` : `Update `) + record.class.displayName || record.className
     return (
       <input
         className={`btn submit${submitting || this.submittingTimeout ? ` submitting` : ``}`}

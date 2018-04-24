@@ -11,10 +11,7 @@ export default class PaginationControls extends React.Component {
     hideSelect: PropTypes.bool,
     noSummary: PropTypes.bool,
     onPageChange: PropTypes.func,
-    page: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    page: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     perPage: PropTypes.number,
     showSelect: PropTypes.bool,
     style: PropTypes.object,
@@ -32,13 +29,13 @@ export default class PaginationControls extends React.Component {
     const { collection } = this.props
     this.currentPage = this.props.page
 
-    if(collection){
+    if (collection) {
       collection.count().then(count => (this.totalRecords = count))
 
       reaction(
         () => this.props.perPage,
         perPage => {
-          if(perPage) collection.limit(perPage)
+          if (perPage) collection.limit(perPage)
         },
         true,
       )
@@ -73,7 +70,6 @@ export default class PaginationControls extends React.Component {
 
       reaction(() => this.currentPage, page => this.props.onPageChange(page))
     }
-    
   }
 
   @action
@@ -214,7 +210,7 @@ export default class PaginationControls extends React.Component {
   }
 
   render() {
-    if(!this.props.collection) return null
+    if (!this.props.collection) return null
     if (!this.totalRecords) return null
 
     const prevButton = this.firstPage ? (
