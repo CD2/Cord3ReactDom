@@ -75,7 +75,7 @@ export default class CollectionSelectField extends React.Component {
   }
 
   renderSuggestions() {
-    if (!this.active) return null
+    if (!this.active || this.inputValue === '') return null
     return (
       <div className="suggestions" style={{ position: "relative", zIndex: 10000 }}>
         {this.filteredChoices.map(choice => (
@@ -83,6 +83,7 @@ export default class CollectionSelectField extends React.Component {
             key={choice}
             className="suggestions__item"
             onMouseDown={() => this.chooseValue(choice)}
+            style={{color: 'black'}}
           >
             {choice[1]}
           </span>
