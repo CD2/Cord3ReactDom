@@ -101,7 +101,7 @@ export default class PasswordInput extends React.Component {
   render() {
     return (
       <div className={this.props.className}>
-        <div style={{ padding: `2px` }}>
+        <div style={{ padding: `0 0 ${this.props.spacing || '10px'} 0` }}>
           <input
             className="input"
             type="password"
@@ -111,7 +111,7 @@ export default class PasswordInput extends React.Component {
             onChange={this.handlePasswordChange}
           />
         </div>
-        <div style={{ padding: `2px` }}>
+        <div style={{ padding: `0 0 ${this.props.spacing || '10px'} 0` }}>
           <input
             className="input"
             type="password"
