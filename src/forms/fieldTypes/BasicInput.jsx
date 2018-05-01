@@ -40,7 +40,7 @@ export default class BasicInput extends React.Component {
         className="input"
         {...otherProps}
         value={value || ``}
-        name={this.props.name}
+        name={this.props.name || this.props.field}
         disabled={disabled || false}
         onChange={this.handleChange}
       />

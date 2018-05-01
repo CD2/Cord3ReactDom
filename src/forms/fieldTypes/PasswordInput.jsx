@@ -67,7 +67,9 @@ export default class PasswordInput extends React.Component {
     {errors.push({ "Password and Confirmation password must match.": false })}
     else errors.push({ "Password and Confirmation password must match.": password === password2 })
     this.errors.replace(errors)
-    this.props.password(this.passwordValue)
+    this.props.errors && this.props.errors(this.errors)
+    this.props.password && this.props.password(this.passwordValue)
+    this.props.onChange && this.props.onChange(this.passwordValue)
   }
 
   helpers = {
