@@ -70,6 +70,7 @@ export default class PasswordInput extends React.Component {
     this.props.errors && this.props.errors(this.errors)
     this.props.password && this.props.password(this.passwordValue)
     this.props.onChange && this.props.onChange(this.passwordValue)
+    this.props.onChangeConfirmation && this.props.onChangeConfirmation(this.this.confirmationPassword)
   }
 
   helpers = {
