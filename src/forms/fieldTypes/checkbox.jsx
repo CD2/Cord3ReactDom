@@ -13,7 +13,12 @@ export class Checkbox extends React.Component {
     name: PropTypes.string,
     onChange: PropTypes.func,
     onRawChange: PropTypes.func,
+    style: PropTypes.object,
     value: PropTypes.any,
+  }
+
+  static defaultProps = {
+    style: {}
   }
 
   @observable checked = this.props.value
@@ -30,12 +35,16 @@ export class Checkbox extends React.Component {
   render() {
     const { fieldTitle, customLabel } = this.props
     return (
-      <label style={{ marginTop: `8px` }}>
+      <label style={{ marginTop: `8px`, display: `inline-block`, verticalAlign: `middle`, ...this.props.style }}>
         <input
           className="checkbox"
           checked={this.checked || this.props.defaultValue}
           type="checkbox"
           name={this.props.name}
+          style={{
+            display: `inline-block`, 
+            verticalAlign: `middle`
+          }}
           onChange={this.handleChange}
         />
         <div style={{ display: `inline-block`, width: `20px`, verticalAlign: `middle` }}>
