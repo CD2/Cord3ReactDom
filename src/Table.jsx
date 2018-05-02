@@ -53,6 +53,9 @@ export class CordTable extends CordCollection {
     const { renderRow, renderHead } = this.props
     if (!this.loaded || !this.records) return this.props.loadingContent || `Loading...`
     if (this.records.length === 0) {
+      if (this.props.noEntries) {
+        return this.props.noEntries
+      }
       return <div className={`${this.props.className} no-results`}>No entries</div>
     }
     return (
