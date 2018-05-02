@@ -35,7 +35,7 @@ export class Checkbox extends React.Component {
   render() {
     const { fieldTitle, customLabel } = this.props
     return (
-      <label style={{ marginTop: `8px`, display: `inline-block`, verticalAlign: `middle`, ...this.props.style }}>
+      <label style={{ marginTop: `8px`, verticalAlign: `middle`, ...this.props.style }}>
         <input
           className="checkbox"
           checked={this.checked || this.props.defaultValue}
