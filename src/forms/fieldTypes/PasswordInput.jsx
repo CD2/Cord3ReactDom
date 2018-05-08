@@ -18,7 +18,7 @@ import List from "lib/components/list"
       color: ${t(`delete`)}
     }
     .complete {
-      color: ${t(`primary`)}
+      color: ${t(`primary.value`)}
     }
   }
 `
@@ -63,9 +63,9 @@ export default class PasswordInput extends React.Component {
     Object.entries(this.helpers).map(([key, value]) => {
       errors.push({ [key]: value(password) })
     })
-    if ((!password || password.length < 8) && (password2 || password2.length < 8))
-    {errors.push({ "Password and confirmation password must match": false })}
-    else errors.push({ "Password and confirmation password must match": password === password2 })
+    if ((!password || password.length < 8) && (password2 || password2.length < 8)) {
+      errors.push({ "Password and confirmation password must match": false })
+    } else errors.push({ "Password and confirmation password must match": password === password2 })
     this.errors.replace(errors)
     this.props.errors && this.props.errors(this.errors)
     this.props.password && this.props.password(this.passwordValue)
@@ -104,7 +104,7 @@ export default class PasswordInput extends React.Component {
   render() {
     return (
       <div className={this.props.className}>
-        <div style={{ padding: `0 0 ${this.props.spacing || '10px'} 0` }}>
+        <div style={{ padding: `0 0 ${this.props.spacing || `10px`} 0` }}>
           <input
             className="input"
             type="password"
@@ -114,7 +114,7 @@ export default class PasswordInput extends React.Component {
             onChange={this.handlePasswordChange}
           />
         </div>
-        <div style={{ padding: `0 0 ${this.props.spacing || '10px'} 0` }}>
+        <div style={{ padding: `0 0 ${this.props.spacing || `10px`} 0` }}>
           <input
             className="input"
             type="password"

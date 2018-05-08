@@ -18,7 +18,7 @@ export class Checkbox extends React.Component {
   }
 
   static defaultProps = {
-    style: {}
+    style: {},
   }
 
   @observable checked = this.props.value
@@ -42,8 +42,8 @@ export class Checkbox extends React.Component {
           type="checkbox"
           name={this.props.name}
           style={{
-            display: `inline-block`, 
-            verticalAlign: `middle`
+            display: `inline-block`,
+            verticalAlign: `middle`,
           }}
           onChange={this.handleChange}
         />
