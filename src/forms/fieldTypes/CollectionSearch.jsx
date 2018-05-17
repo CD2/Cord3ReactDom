@@ -17,6 +17,7 @@ export default class CollectionSelectField extends React.Component {
     onSelect: PropTypes.func,
     placeholder: PropTypes.any,
     value: PropTypes.string,
+    chooseValue
   }
 
   constructor(props) {
@@ -109,7 +110,7 @@ export default class CollectionSelectField extends React.Component {
             if (this.filteredChoices.length === 0 && noOptionsFunction) {
               noOptionsFunction()
             } else {
-              if(this.props.chooseValue) this.props.chooseValue()
+              if(this.props.onChooseValue) this.props.onChooseValue()
               else this.chooseValue(this.filteredChoices[0])
             }
           }
