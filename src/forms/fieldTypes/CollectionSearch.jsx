@@ -14,10 +14,10 @@ export default class CollectionSelectField extends React.Component {
     initialValue: PropTypes.any,
     name: PropTypes.string,
     onChange: PropTypes.func,
+    onChooseValue: PropTypes.func,
     onSelect: PropTypes.func,
     placeholder: PropTypes.any,
     value: PropTypes.string,
-    chooseValue
   }
 
   constructor(props) {
