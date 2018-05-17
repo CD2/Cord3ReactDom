@@ -52,12 +52,16 @@ export default class ComponentWithRecord extends React.Component {
     this.afterLookup && this.afterLookup(this.record)
   }
 
-  renderLoading() {
-    return this.loadingContent ? this.loadingContent() : `...`
+  renderErrored() {
+    if (this.errorComponent) return <this.errorComponent />
+    if (this.errorContent) return this.errorContent
+    return `...`
   }
 
   mainRender() {
-    if (this.Model && !this.record) return this.renderLoading()
+    if (this.Model && !this.record) {
+      return this.errored ? this.renderErrored() :  `...`
+    }
     return this._render()
   }
 }
