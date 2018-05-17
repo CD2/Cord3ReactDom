@@ -110,7 +110,10 @@ export default class CollectionSelectField extends React.Component {
             if (this.filteredChoices.length === 0 && noOptionsFunction) {
               noOptionsFunction()
             } else {
-              if(this.props.onChooseValue) this.props.onChooseValue()
+              if(this.props.onChooseValue) {
+                this.props.onChooseValue()
+                this.filteredChoices = []
+              }
               else this.chooseValue(this.filteredChoices[0])
             }
           }
