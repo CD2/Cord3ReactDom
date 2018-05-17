@@ -61,6 +61,7 @@ export default class CollectionSelectField extends React.Component {
 
   handleChange = val => {
     this.inputValue = val
+    this.props.onChange && this.props.onChange(val)
   }
 
   handleFocusInput = () => {
@@ -108,7 +109,8 @@ export default class CollectionSelectField extends React.Component {
             if (this.filteredChoices.length === 0 && noOptionsFunction) {
               noOptionsFunction()
             } else {
-              this.chooseValue(this.filteredChoices[0])
+              if(this.props.chooseValue) this.props.chooseValue()
+              else this.chooseValue(this.filteredChoices[0])
             }
           }
         }}
