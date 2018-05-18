@@ -40,7 +40,7 @@ export default class ComponentWithRecord extends React.Component {
   async getRecord() {
     this.record = null
 
-    this.Model.find(this.id)
+    await this.Model.find(this.id)
       .then(record => {
         this.record = record
       })
