@@ -24,7 +24,6 @@ export default class ComponentWithRecord extends React.Component {
     reaction(() => this.id, () => this.getRecord(), true)
   }
 
-
   @observable errored = false
   @observable record
 
@@ -40,16 +39,21 @@ export default class ComponentWithRecord extends React.Component {
   async getRecord() {
     this.record = null
 
-    await this.Model.find(this.id)
-      .then(record => {
+    await this.Model.find(this.id).
+      then(record => {
         this.record = record
-      })
-      .catch(error => {
+      }).
+      catch(error => {
         this.errored = true
         throw error
       })
- 
+
     this.afterLookup && this.afterLookup(this.record)
+  }
+
+  // Overwrite this in the child component to dictate the loading
+  renderLoading() {
+    return `...`
   }
 
   renderErrored() {
@@ -60,7 +64,7 @@ export default class ComponentWithRecord extends React.Component {
 
   mainRender() {
     if (this.Model && !this.record) {
-      return this.errored ? this.renderErrored() :  `...`
+      return this.errored ? this.renderErrored() : this.renderLoading()
     }
     return this._render()
   }
