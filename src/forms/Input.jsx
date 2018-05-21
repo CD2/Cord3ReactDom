@@ -186,7 +186,7 @@ export default class Input extends React.Component {
   }
 
   render() {
-    const { field, render, type, title, description, noLabel } = this.props
+    const { field, render, type, title, description, noLabel, label } = this.props
     const value = this.props.value || this.record[field]
     const errors = this.record.errors.messagesFor(field)
     const onChange = this.handleChange
@@ -206,7 +206,8 @@ export default class Input extends React.Component {
     return (
       <div className={`cord-field ${this.props.className}${errors.length > 0 ? ` errors` : ``}`}>
         <label className="cord-label">
-          {type !== `collection-checkboxes` && type !== `checkbox` && !noLabel && fieldTitle}
+          {(type !== `collection-checkboxes` && type !== `checkbox` && !noLabel) && 
+            label ? label : fieldTitle}
         </label>
         {this.renderInput(type, value, onChange, fieldTitle)}
         {description && <span className="description">{description}</span>}
