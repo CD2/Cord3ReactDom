@@ -210,7 +210,7 @@ export default class Input extends React.Component {
             label ? label : fieldTitle}
         </label>
         {this.renderInput(type, value, onChange, fieldTitle)}
-        {description && <span className="description">{description}</span>}
+        {description && <span className="cord-input-description">{description}</span>}
         {renderedErrors}
       </div>
     )
