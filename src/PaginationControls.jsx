@@ -77,6 +77,9 @@ export default class PaginationControls extends React.Component {
     if (this.props.page !== props.page) {
       this.currentPage = props.page
     }
+    if(props.collection.count() !== this.props.collection.count()){
+      props.collection.count().then(count => (this.totalRecords = count))
+    }
   }
 
   @observable totalRecords
