@@ -3,8 +3,6 @@ import PropTypes from "prop-types"
 import { styled, t } from "lib/utils/theme"
 import { observer } from "mobx-react"
 import { observable, reaction, action, computed } from "mobx"
-import Wrapper from "lib/components/wrapper"
-import List from "lib/components/list"
 
 @styled`
   position: relative;
@@ -83,20 +81,18 @@ export default class PasswordInput extends React.Component {
   @computed
   get renderHelpers() {
     return (
-      <Wrapper className="password_helpers" background={`#f5f5f5`} borderRadius={5}>
-        <List spacing={2}>
-          {this.errors.map(error =>
-            Object.entries(error).map(([error, active]) => (
-              <List.Item
-                key={error}
-                style={{ display: `block`, flex: `1` }}
-                className={`${active ? `complete` : `error`}`}
-              >
-                {error}
-              </List.Item>
-            )),
-          )}
-        </List>
+      <div className="password-helpers">
+        {this.errors.map(error =>
+          Object.entries(error).map(([error, active]) => (
+            <span className="password-helpers__item"
+              key={error}
+              style={{ display: `block`, flex: `1` }}
+              className={`${active ? `complete` : `error`}`}
+            >
+              {error}
+            </span>
+          )),
+        )}
       </Wrapper>
     )
   }

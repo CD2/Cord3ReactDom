@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { observer } from "mobx-react"
-import File from "lib/components/file"
 
 @observer
 export default class FileField extends React.Component {
@@ -35,9 +34,6 @@ export default class FileField extends React.Component {
       <div className="file" style={{ marginTop: `4px` }}>
         {value.rawUid && (
           <React.Fragment>
-            <File uid={value.rawUid} linkOnly onClick={e => e.stopPropagation()}>
-              {value.filename}
-            </File>
             <br />
           </React.Fragment>
         )}
