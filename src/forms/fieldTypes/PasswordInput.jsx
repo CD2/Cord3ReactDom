@@ -1,25 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { styled, t } from "lib/utils/theme"
 import { observer } from "mobx-react"
 import { observable, reaction, action, computed } from "mobx"
 
-@styled`
-  position: relative;
-  .password_helpers {
-    width: 100%;
-    display: inline-block;
-    font-size: 0.9em;
-    text-align: left;
-    font-weight: 600;
-    .error {
-      color: ${t(`delete`)}
-    }
-    .complete {
-      color: ${t(`primary.value`)}
-    }
-  }
-`
 @observer
 export default class PasswordInput extends React.Component {
   static propTypes = {
