@@ -1,6 +1,6 @@
 import React from "react"
 import { observer } from "mobx-react"
-import { observable, reaction, computed } from "mobx"
+import { observable, reaction, computed, autorun } from "mobx"
 import invariant from "invariant"
 import PropTypes from "prop-types"
 
