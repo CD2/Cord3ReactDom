@@ -36,19 +36,22 @@ export default class ComponentWithRecord extends React.Component {
     this._id = val
   }
 
+  afterLookup() {
+    // Overwrite
+  }
+
   async getRecord() {
     this.record = null
 
     await this.Model.find(this.id).
       then(record => {
         this.record = record
+        this.afterLookup(this.record)
       }).
       catch(error => {
         this.errored = true
         throw error
       })
-
-    this.afterLookup && this.afterLookup(this.record)
   }
 
   // Overwrite this in the child component to dictate the loading
