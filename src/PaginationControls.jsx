@@ -77,9 +77,6 @@ export default class PaginationControls extends React.Component {
     if (this.props.page !== props.page) {
       this.currentPage = props.page
     }
-    if(props.collection.count() !== this.props.collection.count()){
-      props.collection.count().then(count => (this.totalRecords = count))
-    }
   }
 
   @observable totalRecords
@@ -127,8 +124,8 @@ export default class PaginationControls extends React.Component {
 
   range(start, end) {
     return Array(end - start + 1).
-      fill().
-      map((_, idx) => start + idx)
+    fill().
+    map((_, idx) => start + idx)
   }
 
   pageNumberArray() {
@@ -238,13 +235,13 @@ export default class PaginationControls extends React.Component {
           <div className="pagination">
             {prevButton}
             {this.pageNumberArray().
-              filter(x => x.length > 1).
-              map((handFeet, i) => (
-                <React.Fragment key={i}>
-                  {i !== 0 && `...`}
-                  {this.renderPageNumbers(handFeet)}
-                </React.Fragment>
-              ))}
+            filter(x => x.length > 1).
+            map((handFeet, i) => (
+              <React.Fragment key={i}>
+                {i !== 0 && `...`}
+                {this.renderPageNumbers(handFeet)}
+              </React.Fragment>
+            ))}
             {nextButton}
             {this.renderSelectPageChange()}
           </div>

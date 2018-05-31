@@ -103,7 +103,7 @@ export default class PasswordInput extends React.Component {
             onChange={this.handlePassConfirmationChange}
           />
         </div>
-        <div style={{ padding: `2px` }}>{this.renderHelpers}</div>
+        {/*<div style={{ padding: `2px` }}>{this.renderHelpers}</div>*/}
       </div>
     )
   }

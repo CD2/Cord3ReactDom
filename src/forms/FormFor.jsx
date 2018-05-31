@@ -72,6 +72,7 @@ export default class FormFor extends React.Component {
     this.submitting = true
     this.formObj.submitting = true
     const saved = await this.props.record.save()
+
     this.submitting = false
     this.formObj.submitting = false
     return saved
@@ -87,7 +88,8 @@ export default class FormFor extends React.Component {
           this.props.afterErrored && this.props.afterErrored()
         }
       }).
-      catch(() => {
+      catch(e => {
+        const props = this.props
         this.props.afterErrored && this.props.afterErrored()
       })
   }
