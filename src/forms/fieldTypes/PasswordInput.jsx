@@ -18,6 +18,7 @@ export default class PasswordInput extends React.Component {
 
   @observable confirmationPassword = ``
   @observable passwordValue = ``
+  @observable show = false
 
   @observable errors = []
 
@@ -82,29 +83,42 @@ export default class PasswordInput extends React.Component {
 
   render() {
     return (
-      <div className={this.props.className}>
-        <div style={{ padding: `0 0 ${this.props.spacing || `10px`} 0` }}>
-          <input
-            className="input"
-            type="password"
-            name="password"
-            value={this.passwordValue}
-            placeholder={this.props.placeholder || `Password`}
-            onChange={this.handlePasswordChange}
-          />
+      <React.Fragment>
+        <input
+          className="input"
+          type={this.show ? `text` : `password`}
+          name="password"
+          value={this.passwordValue}
+          placeholder={this.props.placeholder || `Password`}
+          onChange={this.handlePasswordChange}
+        />
+        <div
+          style={{
+            background: '#ddd',
+            fontSize: '0.85em',
+            display: 'inline-block',
+            padding: 6,
+            borderRadius: 4,
+            margin: '3px 0 0 0'
+          }}
+          onClick={()=>this.show = !this.show}>
+          {this.show ? `Hide` : `Show`}
         </div>
-        <div style={{ padding: `0 0 ${this.props.spacing || `10px`} 0` }}>
-          <input
-            className="input"
-            type="password"
-            name="password_confirmation"
-            value={this.confirmationPassword}
-            placeholder="Password Confirmation"
-            onChange={this.handlePassConfirmationChange}
-          />
-        </div>
+        {
+          !this.props.noConfirmation &&
+          <div style={{ padding: `0 0 ${this.props.spacing || `10px`} 0` }}>
+            <input
+              className="input"
+              type="password"
+              name="password_confirmation"
+              value={this.confirmationPassword}
+              placeholder="Password Confirmation"
+              onChange={this.handlePassConfirmationChange}
+            />
+          </div>
+        }
         {/*<div style={{ padding: `2px` }}>{this.renderHelpers}</div>*/}
-      </div>
+      </React.Fragment>
     )
   }
 }
