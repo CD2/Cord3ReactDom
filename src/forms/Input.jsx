@@ -135,6 +135,7 @@ export default class Input extends React.Component {
           value={value}
           name={this.props.field}
           onChange={handleChange}
+          customRender={this.props.customRender}
         />
       )
     case `number`:
