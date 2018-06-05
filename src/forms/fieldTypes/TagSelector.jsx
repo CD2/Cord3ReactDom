@@ -83,6 +83,9 @@ export default class TagSelector extends React.Component {
 
   renderSelected() {
     if (this.selected.length === 0) return null
+    if(this.props.customRender) {
+      return this.props.customRender(sel[0])
+    }
     return (
       <div className="selected-items">
         {this.selected.map(sel => (

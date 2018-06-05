@@ -103,6 +103,7 @@ export default class CollectionTagSelector extends React.Component {
         name={this.props.name}
         onChange={this.handleChange}
         onInputChange={this.handleValueChange}
+        customRender={this.props.customRender}
       />
     )
   }
