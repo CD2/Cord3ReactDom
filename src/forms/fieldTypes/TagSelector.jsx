@@ -99,8 +99,7 @@ export default class TagSelector extends React.Component {
               {sel[1]} X
             </span>
           )
-        }
-        ))}
+        })}
       </div>
     )
   }
