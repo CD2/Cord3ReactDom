@@ -83,19 +83,23 @@ export default class TagSelector extends React.Component {
 
   renderSelected() {
     if (this.selected.length === 0) return null
-    if(this.props.customRender) {
-      return this.props.customRender(sel[0])
-    }
+
     return (
       <div className="selected-items">
-        {this.selected.map(sel => (
-          <span
-            key={sel}
-            className="selected-item"
-            onClick={this.handleRemoveSuggestion.bind(this, sel[0])}
-          >
-            {sel[1]} X
-          </span>
+        {this.selected.map(sel => {
+          if(this.props.customRender) {
+            return this.props.customRender(sel[0])
+          }
+          return(
+            <span
+              key={sel}
+              className="selected-item"
+              onClick={this.handleRemoveSuggestion.bind(this, sel[0])}
+            >
+              {sel[1]} X
+            </span>
+          )
+        }
         ))}
       </div>
     )
