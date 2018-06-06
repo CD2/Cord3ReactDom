@@ -34,10 +34,21 @@ export default class FileField extends React.Component {
       <div className="file" style={{ marginTop: `4px` }}>
         {value.rawUid && (
           <React.Fragment>
+            <div
+              style={{
+                padding: "10px",
+                border: "1px solid #ddd",
+                borderRadius: 5,
+                marginBottom: 6,
+                display: "inline-block",
+                background: 'white'
+              }}
+            >
+              {value.filename}
+            </div>
             <br />
           </React.Fragment>
         )}
-
         <input
           type="file"
           name={name}
