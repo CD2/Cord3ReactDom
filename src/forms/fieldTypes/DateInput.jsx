@@ -29,6 +29,7 @@ export default class DateInput extends React.Component {
       <input
         type="date"
         className="input"
+        maxlength="8"
         value={value ? value.split(`T`)[0] : value || ``}
         name={this.props.name}
         onChange={this.handleChange}
