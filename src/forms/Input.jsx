@@ -12,6 +12,7 @@ import Select from "./fieldTypes/Select"
 import CollectionSelect from "./fieldTypes/CollectionSelect"
 import CollectionTagSelector from "./fieldTypes/CollectionTagSelector"
 import CollectionCheckBoxes from "./fieldTypes/CollectionCheckBoxes"
+import CollectionSearch from "./fieldTypes/CollectionSearch"
 
 @inject(`form`)
 @observer
@@ -138,6 +139,19 @@ export default class Input extends React.Component {
           customRender={this.props.customRender}
         />
       )
+    case `collection-search`:
+      return (
+        <CollectionSearch
+          collection={this.props.collection}
+          name_attribute={this.props.name_attribute}
+          value_attribute={this.props.value_attribute}
+          createFunction={this.props.createFunction}
+          value={value}
+          name={this.props.field}
+          onChange={handleChange}
+          customRender={this.props.customRender}
+        />
+      )
     case `number`:
       return (
         <BasicInput
@@ -193,7 +207,7 @@ export default class Input extends React.Component {
     const onChange = this.handleChange
     const fieldTitle = title ? title : titleize(field)
 
-    if (render) return render(value, errors, this.handleChange)
+    if (render) return render(value, errors, this.handleChange, field)
 
     let renderedErrors = null
     if (errors) {
