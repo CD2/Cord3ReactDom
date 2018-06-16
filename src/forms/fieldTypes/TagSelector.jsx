@@ -73,6 +73,7 @@ export default class TagSelector extends React.Component {
       this.selected.push(suggestion)
     }
     this.inputValue = ``
+    this.handleToggleFocus()
   }
 
   @action
@@ -83,12 +84,15 @@ export default class TagSelector extends React.Component {
 
   renderSelected() {
     if (this.selected.length === 0) return null
-
     return (
       <div className="selected-items">
         {this.selected.map(sel => {
           if(this.props.customRender) {
-            return this.props.customRender(sel[0])
+            return (
+              <div style={{display: 'inline-block'}} onClick={this.handleRemoveSuggestion.bind(this, sel[0])}>
+                {this.props.customRender(sel[0])}
+              </div>
+            )
           }
           return(
             <span
@@ -105,9 +109,10 @@ export default class TagSelector extends React.Component {
   }
 
   renderSuggestions() {
+    const suggestions = this.suggestions.filter(([val, _])=>!this.selected.map(([x, y])=>x).includes(val))
     return (
       <div className="suggestions">
-        {this.suggestions.map(suggestion => (
+        {suggestions.map(suggestion => (
           <span
             key={suggestion}
             className="suggestions__item"
@@ -167,11 +172,6 @@ export default class TagSelector extends React.Component {
             onFocus={this.handleToggleFocus}
             onChange={this.handleChange}
           />
-          {this.isFocused && (
-            <div className="close-tag" onClick={this.handleToggleFocus}>
-              X
-            </div>
-          )}
           {this.isFocused && this.renderSuggestions()}
         </div>
       </div>
