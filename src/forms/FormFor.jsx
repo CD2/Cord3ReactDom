@@ -81,16 +81,15 @@ export default class FormFor extends React.Component {
   handleSubmit = async e => {
     e.preventDefault()
     this.props.duringSave && this.props.duringSave()
-    this.save().
-      then(saved => {
+    this.save()
+      .then(saved => {
         if (saved) {
           this.props.afterSubmit()
         } else {
-          debugger
           this.props.afterErrored && this.props.afterErrored()
         }
-      }).
-      catch(e => {
+      })
+      .catch(e => {
         console.error(e)
         this.props.afterErrored && this.props.afterErrored()
       })
