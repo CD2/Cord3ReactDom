@@ -146,9 +146,12 @@ export default class Input extends React.Component {
           name_attribute={this.props.name_attribute}
           value_attribute={this.props.value_attribute}
           createFunction={this.props.createFunction}
+          choices={this.props.choices}
+          initialValue={this.props.initialValue}
           value={value}
           name={this.props.field}
           onChange={handleChange}
+          onSelect={this.props.onSelect}
           customRender={this.props.customRender}
         />
       )

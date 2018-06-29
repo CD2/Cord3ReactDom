@@ -8,6 +8,7 @@ import BasicInput from "./BasicInput"
 export default class CollectionSelectField extends React.Component {
   static propTypes = {
     blankAfterSelect: PropTypes.bool,
+    choices: PropTypes.array,
     className: PropTypes.string,
     collection: PropTypes.object,
     defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -39,8 +40,11 @@ export default class CollectionSelectField extends React.Component {
   }
 
   async setupChoices() {
-    const { name_attribute, value_attribute, collection } = this.props
-    this.choices = await collection.pluck(value_attribute, name_attribute)
+    const { name_attribute, value_attribute, collection, choices } = this.props
+
+    if (choices) this.choices = choices
+    else this.choices = await collection.pluck(value_attribute, name_attribute)
+
     if (this.choices) this.loaded = true
   }
 
@@ -53,7 +57,10 @@ export default class CollectionSelectField extends React.Component {
   filterList() {
     if (this.inputValue && this.inputValue.length > 0) {
       this.filteredChoices = this.choices.filter(
-        choice => choice[1].toLowerCase().indexOf(this.inputValue.toLowerCase()) > -1,
+        choice => {
+          const inputValue = this.inputValue
+          return choice[1].toLowerCase().indexOf(inputValue.toLowerCase()) > -1
+        }
       )
     } else {
       this.filteredChoices = this.choices
