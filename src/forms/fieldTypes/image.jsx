@@ -34,11 +34,11 @@ export default class ImageField extends React.Component {
     if (!value) return null
     if (!value.url) return ``
     if(value.record.persisted) {
-      if(value.record.requestedAttributes.includes('image__small')){
+      if(value.record.requestedAttributes.includes(`image__small`)){
         return <img src={value.record.image__small} alt="img" />
-      } else {
-        console.warn('Add image__small to requested form fields to show preview')
-      }
+      } 
+      console.warn(`Add image__small to requested form fields to show preview`)
+      
     } else {
       return <img src={value.url} alt="img" />
     }

@@ -68,7 +68,8 @@ export default class PasswordInput extends React.Component {
       <div className="password-helpers">
         {this.errors.map(error =>
           Object.entries(error).map(([error, active]) => (
-            <span className="password-helpers__item"
+            <span
+              className="password-helpers__item"
               key={error}
               style={{ display: `block`, flex: `1` }}
               className={`${active ? `complete` : `error`}`}
@@ -94,14 +95,15 @@ export default class PasswordInput extends React.Component {
         />
         <div
           style={{
-            background: '#ddd',
-            fontSize: '0.85em',
-            display: 'inline-block',
+            background: `#ddd`,
+            fontSize: `0.85em`,
+            display: `inline-block`,
             padding: 6,
             borderRadius: 4,
-            margin: '3px 0 0 0'
+            margin: `3px 0 0 0`
           }}
-          onClick={()=>this.show = !this.show}>
+          onClick={()=>this.show = !this.show}
+        >
           {this.show ? `Hide` : `Show`}
         </div>
         {

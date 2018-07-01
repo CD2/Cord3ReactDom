@@ -89,7 +89,7 @@ export default class TagSelector extends React.Component {
         {this.selected.map(sel => {
           if(this.props.customRender) {
             return (
-              <div style={{display: 'inline-block'}} onClick={this.handleRemoveSuggestion.bind(this, sel[0])}>
+              <div style={{ display: `inline-block` }} onClick={this.handleRemoveSuggestion.bind(this, sel[0])}>
                 {this.props.customRender(sel[0])}
               </div>
             )

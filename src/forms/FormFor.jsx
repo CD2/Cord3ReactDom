@@ -86,7 +86,6 @@ export default class FormFor extends React.Component {
         if (saved) {
           this.props.afterSubmit()
         } else {
-          debugger
           this.props.afterErrored && this.props.afterErrored()
         }
       }).
