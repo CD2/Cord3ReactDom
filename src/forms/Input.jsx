@@ -146,9 +146,12 @@ export default class Input extends React.Component {
           name_attribute={this.props.name_attribute}
           value_attribute={this.props.value_attribute}
           createFunction={this.props.createFunction}
+          choices={this.props.choices}
+          initialValue={this.props.initialValue}
           value={value}
           name={this.props.field}
           onChange={handleChange}
+          onSelect={this.props.onSelect}
           customRender={this.props.customRender}
         />
       )
@@ -220,7 +223,7 @@ export default class Input extends React.Component {
     }
     return (
       <div className={`cord-field ${this.props.className}${errors.length > 0 ? ` errors` : ``}`}>
-        <label className="cord-label">
+        <label className="cord-label" style={{ paddingBottom: 2 }} >
           {(type !== `collection-checkboxes` && type !== `checkbox`) && !noLabel &&
             (label ? label : fieldTitle)
           }
