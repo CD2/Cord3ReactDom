@@ -2,14 +2,12 @@ var path = require(`path`)
 var webpack = require(`webpack`)
 
 module.exports = {
-  //   entry: ["babel-polyfill", "./src/index.js"],
   entry: [`./src/index.js`],
   output: {
     path: path.resolve(__dirname, `build`),
     filename: `script.js`,
     publicPath: `/`,
-    library: `@cd2/cord-react-dom`,
-    libraryTarget: `umd`,
+    libraryTarget: `commonjs`,
   },
   devServer: {
     contentBase: `./build`,
