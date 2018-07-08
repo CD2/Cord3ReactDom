@@ -45,7 +45,7 @@ export default class CollectionCheckBoxes extends React.Component {
             key={index + Math.random()}
             value={this.values.includes(choice[0])}
             fieldTitle={choice[1]}
-            customLabel={this.props.customLabel(choice)}
+            customLabel={this.props.customLabel && this.props.customLabel(choice)}
             onChange={() => this.handleChange(choice[0])}
           />
         ))}
