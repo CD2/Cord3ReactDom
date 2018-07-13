@@ -188,6 +188,7 @@ export default class Input extends React.Component {
           customLabel={this.props.customLabel}
           value={value}
           onChange={handleChange}
+          limitSelected={this.props.limitSelected}
         />
       )
     default:

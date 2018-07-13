@@ -28,8 +28,21 @@ export class Checkbox extends React.Component {
     if (onRawChange) onRawChange(e)
     if (onChange) {
       onChange(e.target.checked)
-      this.checked = e.target.checked
+      this.hasCheckedProp(e.target.checked)
     }
+  }
+
+  hasCheckedProp(checked){
+    if(this.props.checked === false ||this.props.checked ){
+      this.checked = this.props.checked
+    } else {
+      this.checked = checked
+    }
+  }
+
+  checkedOrDefault(){
+    if(this.checked === false || this.checked) return this.checked
+    return this.props.defaultValue
   }
 
   render() {
@@ -38,7 +51,7 @@ export class Checkbox extends React.Component {
       <label style={{ marginTop: `8px`, verticalAlign: `middle`, ...this.props.style }}>
         <input
           className="checkbox"
-          checked={this.checked || this.props.defaultValue}
+          checked={this.checkedOrDefault()}
           type="checkbox"
           name={this.props.name}
           style={{
