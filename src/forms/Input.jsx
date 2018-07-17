@@ -98,6 +98,7 @@ export default class Input extends React.Component {
           defaultValue={this.props.defaultValue}
           name={this.props.field}
           onChange={handleChange}
+          customLabel={this.props.customLabel}
         />
       )
     case `select`:
@@ -187,6 +188,7 @@ export default class Input extends React.Component {
           customLabel={this.props.customLabel}
           value={value}
           onChange={handleChange}
+          limitSelected={this.props.limitSelected}
         />
       )
     default:
