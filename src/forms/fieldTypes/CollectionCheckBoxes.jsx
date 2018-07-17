@@ -16,14 +16,14 @@ export default class CollectionCheckBoxes extends React.Component {
   }
 
   async componentDidMount() {
-    this.values = this.props.value
+    this.values = this.props.value || []
     const { name_attribute, value_attribute, custom_attribute, collection } = this.props
     if (!collection) throw new Error(`You have not sent a collection - check your field!`)
     this.choices = await collection.pluck(value_attribute, name_attribute, custom_attribute)
   }
 
   @observable choices
-  @observable values
+  @observable values = []
 
   @action
   handleChange = value => {
@@ -43,7 +43,7 @@ export default class CollectionCheckBoxes extends React.Component {
         {this.choices.map((choice, index) => (
           <Checkbox
             key={index + Math.random()}
-            value={this.values && this.values.includes(choice[0])}
+            value={this.values.includes(choice[0])}
             fieldTitle={choice[1]}
             customLabel={this.props.customLabel && this.props.customLabel(choice)}
             onChange={() => this.handleChange(choice[0])}
