@@ -27,7 +27,6 @@ export default class CollectionSelectField extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     this.reac = reaction(
       () => this.inputValue,
       val => {
