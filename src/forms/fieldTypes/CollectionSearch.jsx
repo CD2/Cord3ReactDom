@@ -27,12 +27,23 @@ export default class CollectionSelectField extends React.Component {
   }
 
   componentDidMount() {
-    reaction(
+    debugger
+    this.reac = reaction(
       () => this.inputValue,
       val => {
         this.filterList(val)
       },
     )
+    if(this.props.defaultValue){
+      const chosen = this.choices.find(choice => choice[0] === this.props.defaultValue)
+      if(chosen){
+        this.chooseValue(chosen)
+      }
+    }
+  }
+
+  componentWillUnmount(){
+    this.reac()
   }
 
   componentWillReceiveProps(props) {
