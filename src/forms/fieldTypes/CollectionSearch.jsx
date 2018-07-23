@@ -33,12 +33,6 @@ export default class CollectionSelectField extends React.Component {
         this.filterList(val)
       },
     )
-    if(this.props.defaultValue){
-      const chosen = this.choices.find(choice => choice[0] === this.props.defaultValue)
-      if(chosen){
-        this.chooseValue(chosen)
-      }
-    }
   }
 
   componentWillUnmount(){
@@ -56,12 +50,19 @@ export default class CollectionSelectField extends React.Component {
     else this.choices = await collection.pluck(value_attribute, name_attribute)
 
     if (this.choices) this.loaded = true
+    
+    if(this.props.defaultValue){
+      const chosen = this.choices.find(choice => choice[0] === this.props.defaultValue)
+      if(chosen){
+        this.chooseValue(chosen)
+      }
+    }
   }
 
   @observable inputValue = this.props.initialValue
   @observable loaded = false
   @observable active = false
-  @observable choices = this.choices
+  @observable choices = this.choices || []
   @observable filteredChoices = []
 
   filterList() {
