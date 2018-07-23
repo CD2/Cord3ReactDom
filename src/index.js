@@ -17,3 +17,4 @@ export { default as CollectionTagSelector } from "./forms/fieldTypes/CollectionT
 export { default as Submit } from "./forms/Submit"
 export { default as ComponentWithRecord } from "./ComponentWithRecord"
 export { default as TextArea } from "./forms/fieldTypes/textarea"
+export { default as CollectionCheckBoxes } from "./forms/fieldTypes/CollectionCheckBoxes"
