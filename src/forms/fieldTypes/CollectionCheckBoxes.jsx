@@ -48,7 +48,7 @@ export default class CollectionCheckBoxes extends React.Component {
     if (!this.choices) return `Loading...`
     return (
       <div className="collection-checkboxes">
-        {this.props.limitSelected && `Select up to ${this.props.limitSelected}`}
+        {this.props.limitSelected ? `Select up to ${this.props.limitSelected}` : ``}
         {this.choices.map((choice, index) => (
           <Checkbox
             key={index + Math.random()}
