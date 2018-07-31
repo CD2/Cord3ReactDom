@@ -47,7 +47,7 @@ export default class Submit extends React.Component {
         disabled={submitting || this.submittingTimeout}
         value={
           submitting || this.submittingTimeout
-            ? submittingText || `submitting`
+            ? submittingText || `Submitting`
             : text || defaultText
         }
       />
