@@ -171,6 +171,7 @@ export default class TagSelector extends React.Component {
             name={this.props.name}
             onFocus={this.handleToggleFocus}
             onChange={this.handleChange}
+            autocomplete="off"
           />
           {this.isFocused && this.renderSuggestions()}
         </div>
