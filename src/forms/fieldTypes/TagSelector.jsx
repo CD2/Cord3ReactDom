@@ -60,7 +60,10 @@ export default class TagSelector extends React.Component {
   @observable selected = []
   @observable isFocused = false
 
-  @action handleToggleFocus = () => (this.isFocused = !this.isFocused)
+  @action handleToggleFocus = () => {
+    this.isFocused = !this.isFocused
+    this.inputValue = ``
+  }
 
   @action
   handleChange = val => {
