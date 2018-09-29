@@ -225,7 +225,7 @@ export default class Input extends React.Component {
     }
     return (
       <div className={`cord-field ${this.props.className}${errors.length > 0 ? ` errors` : ``}`}>
-        <label className="cord-label" style={{ paddingBottom: 2 }} >
+        <label className="cord-label">
           {(type !== `collection-checkboxes` && type !== `checkbox`) && !noLabel &&
             (label ? label : fieldTitle)
           }
